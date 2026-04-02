@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physical Presence Calculator – Canadian Citizenship</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&display=swap');
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -50,94 +50,96 @@
             --g900: #111827;
             --g950: #030712;
 
-            --radius-xs: 8px;
-            --radius-sm: 10px;
-            --radius-md: 14px;
-            --radius-lg: 18px;
-            --radius-xl: 24px;
+            --radius-xs: 10px;
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
             --radius-full: 9999px;
 
             --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
             --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04);
             --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.06), 0 4px 6px -4px rgba(0,0,0,0.04);
-            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.06), 0 8px 10px -6px rgba(0,0,0,0.04);
 
             --ease: cubic-bezier(0.4, 0, 0.2, 1);
             --duration: 200ms;
+
+            font-size: 16px;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--g50);
             color: var(--g800);
-            line-height: 1.6;
+            line-height: 1.7;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-size: 1rem;
         }
 
         /* ==================== TOP BANNER ==================== */
         .top-banner {
             background: linear-gradient(135deg, var(--canadian-red) 0%, #b91c1c 100%);
-            padding: 0.625rem 1.5rem;
+            padding: 0.75rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.625rem;
+            gap: 0.75rem;
+        }
+        .top-banner-icon {
+            font-size: 1.5rem;
+            line-height: 1;
         }
         .top-banner span {
             color: #fff;
-            font-size: 0.8125rem;
+            font-size: 0.9375rem;
             font-weight: 600;
             letter-spacing: 0.01em;
         }
-        .flag-bar {
-            display: flex;
-            height: 3px;
-            background: var(--g200);
-        }
+        .flag-bar { display: flex; height: 4px; }
         .flag-bar .bar-red { background: var(--canadian-red); flex: 1; }
         .flag-bar .bar-white { background: #fff; flex: 2; }
 
-        /* ==================== PAGE CONTAINER ==================== */
+        /* ==================== PAGE ==================== */
         .page-wrap {
-            max-width: 720px;
+            max-width: 740px;
             margin: 0 auto;
-            padding: 3rem 1.5rem 6rem;
+            padding: 2.5rem 1.5rem 6rem;
         }
 
-        /* ==================== PAGE HEADER ==================== */
+        /* ==================== HEADER ==================== */
         .page-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             animation: fadeInDown 0.6s var(--ease) both;
         }
         .page-header-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 64px;
-            height: 64px;
+            width: 76px;
+            height: 76px;
             background: linear-gradient(135deg, var(--primary-light), #e0e7ff);
             border-radius: var(--radius-lg);
-            font-size: 1.75rem;
+            font-size: 2.25rem;
             margin-bottom: 1.25rem;
             box-shadow: 0 8px 24px var(--primary-glow);
         }
         .page-header h1 {
-            font-size: 2rem;
+            font-size: 2.125rem;
             font-weight: 800;
             color: var(--g950);
             letter-spacing: -0.035em;
             line-height: 1.2;
-            margin-bottom: 0.625rem;
+            margin-bottom: 0.75rem;
         }
         .page-header p {
             color: var(--g500);
-            font-size: 1rem;
+            font-size: 1.0625rem;
             line-height: 1.7;
-            max-width: 520px;
+            max-width: 540px;
             margin: 0 auto;
             font-weight: 400;
         }
@@ -156,18 +158,18 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 0.75rem;
+            padding: 0.625rem 0.75rem;
             border-radius: var(--radius-xs);
             transition: background var(--duration) var(--ease);
         }
         .step-num {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
+            font-size: 0.875rem;
             font-weight: 700;
             background: var(--g100);
             color: var(--g400);
@@ -188,7 +190,7 @@
             box-shadow: 0 4px 12px var(--green-shadow);
         }
         .step-label {
-            font-size: 0.8125rem;
+            font-size: 0.9375rem;
             font-weight: 600;
             color: var(--g400);
             transition: color var(--duration) var(--ease);
@@ -197,25 +199,19 @@
         .step.completed .step-label { color: var(--green-dark); }
         .step-connector {
             width: 28px;
-            height: 2px;
+            height: 2.5px;
             background: var(--g200);
-            border-radius: 1px;
+            border-radius: 2px;
             transition: background 0.3s var(--ease);
         }
         .step-connector.done { background: var(--green); }
-
-        @media (max-width: 560px) {
-            .step-label { display: none; }
-            .step { padding: 0.375rem; }
-            .step-connector { width: 16px; }
-        }
 
         /* ==================== CARDS ==================== */
         .card {
             background: var(--g0);
             border-radius: var(--radius-lg);
-            padding: 2rem;
-            margin-bottom: 1.25rem;
+            padding: 2.25rem;
+            margin-bottom: 1.5rem;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--g200);
             transition: box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
@@ -225,25 +221,22 @@
         .card:nth-child(3) { animation-delay: 0.1s; }
         .card:nth-child(4) { animation-delay: 0.15s; }
         .card:nth-child(5) { animation-delay: 0.2s; }
-        .card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--g300);
-        }
+        .card:hover { box-shadow: var(--shadow-md); border-color: var(--g300); }
 
         .card-head {
             display: flex;
             align-items: flex-start;
             gap: 1rem;
-            margin-bottom: 1.75rem;
+            margin-bottom: 2rem;
         }
         .card-letter {
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 1.25rem;
             font-weight: 800;
             flex-shrink: 0;
             color: #fff;
@@ -255,29 +248,29 @@
         .card-letter.d { background: linear-gradient(135deg, var(--amber), #fbbf24); }
         .card-letter.e { background: linear-gradient(135deg, #06b6d4, #22d3ee); }
 
-        .card-head-text { flex: 1; }
+        .card-head-text { flex: 1; padding-top: 0.125rem; }
         .card-title {
-            font-size: 1.0625rem;
+            font-size: 1.1875rem;
             font-weight: 700;
             color: var(--g900);
-            line-height: 1.3;
+            line-height: 1.35;
             letter-spacing: -0.01em;
         }
         .card-desc {
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             color: var(--g500);
-            margin-top: 0.25rem;
-            line-height: 1.6;
+            margin-top: 0.375rem;
+            line-height: 1.65;
             font-weight: 400;
         }
         .req { color: var(--red); font-weight: 700; }
 
-        /* ==================== FORM FIELDS ==================== */
-        .field { margin-bottom: 1.25rem; }
+        /* ==================== FORM ==================== */
+        .field { margin-bottom: 1.5rem; }
         .field:last-child { margin-bottom: 0; }
         .field > label {
             display: block;
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 600;
             color: var(--g700);
             margin-bottom: 0.5rem;
@@ -288,10 +281,10 @@
         input[type="text"],
         select {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.875rem 1rem;
             border: 1.5px solid var(--g200);
             border-radius: var(--radius-sm);
-            font-size: 0.9375rem;
+            font-size: 1rem;
             font-family: 'Inter', sans-serif;
             font-weight: 450;
             color: var(--g800);
@@ -299,6 +292,7 @@
             transition: all var(--duration) var(--ease);
             appearance: none;
             -webkit-appearance: none;
+            min-height: 52px;
         }
         select {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%239ca3af' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6l3.5 4 3.5-4'/%3E%3C/svg%3E");
@@ -306,74 +300,64 @@
             background-position: right 1rem center;
             padding-right: 2.75rem;
         }
-        input:hover, select:hover {
-            border-color: var(--g300);
-        }
+        input:hover, select:hover { border-color: var(--g300); }
         input:focus, select:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 4px var(--primary-glow);
         }
-        input::placeholder, select::placeholder {
-            color: var(--g400);
-            font-weight: 400;
-        }
+        input::placeholder { color: var(--g400); font-weight: 400; }
 
         .field-hint {
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             color: var(--g400);
-            margin-top: 0.375rem;
-            line-height: 1.5;
+            margin-top: 0.5rem;
+            line-height: 1.55;
         }
 
-        .row {
-            display: flex;
-            gap: 0.875rem;
-            align-items: flex-end;
-        }
+        .row { display: flex; gap: 1rem; align-items: flex-end; }
         .row > .field { flex: 1; margin-bottom: 0; }
 
-        /* ==================== RADIO GROUP ==================== */
-        .radio-group { display: flex; gap: 0.625rem; }
+        /* ==================== RADIO ==================== */
+        .radio-group { display: flex; gap: 0.75rem; }
         .radio-option { flex: 1; position: relative; }
         .radio-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
         .radio-label {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.375rem;
-            padding: 0.75rem 1.25rem;
+            gap: 0.5rem;
+            padding: 0.875rem 1.25rem;
             border: 1.5px solid var(--g200);
             border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 0.9375rem;
+            font-size: 1rem;
             font-weight: 600;
             color: var(--g500);
             background: var(--g0);
             transition: all var(--duration) var(--ease);
+            min-height: 52px;
         }
-        .radio-label:hover {
-            border-color: var(--g300);
-            background: var(--g50);
-        }
+        .radio-label:hover { border-color: var(--g300); background: var(--g50); }
         .radio-option input:checked + .radio-label {
             border-color: var(--primary);
             background: var(--primary-light);
             color: var(--primary);
             box-shadow: 0 0 0 3px var(--primary-glow);
         }
+        .radio-label .radio-icon { font-size: 1.25rem; line-height: 1; }
 
         /* ==================== BUTTONS ==================== */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.4rem;
-            height: 46px;
-            padding: 0 1.375rem;
+            gap: 0.5rem;
+            height: 52px;
+            padding: 0 1.5rem;
             border: none;
             border-radius: var(--radius-sm);
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 600;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
@@ -394,44 +378,32 @@
             transform: translateY(-1px);
         }
         .btn-primary:active { transform: scale(0.97) translateY(0); }
-
         .btn-secondary {
             background: var(--g0);
             color: var(--g700);
             border: 1.5px solid var(--g200);
         }
-        .btn-secondary:hover {
-            background: var(--g50);
-            border-color: var(--g300);
-        }
-        .btn-sm { height: 42px; font-size: 0.8125rem; padding: 0 1.125rem; }
+        .btn-secondary:hover { background: var(--g50); border-color: var(--g300); }
+        .btn-sm { height: 48px; font-size: 0.875rem; padding: 0 1.25rem; }
+        .btn .btn-icon { font-size: 1.25rem; line-height: 1; }
 
-        /* ==================== CONDITIONAL SECTIONS ==================== */
-        .conditional {
-            display: none;
-            animation: fadeIn 0.3s var(--ease);
-        }
+        /* ==================== CONDITIONAL ==================== */
+        .conditional { display: none; animation: fadeIn 0.3s var(--ease); }
         .conditional.visible { display: block; }
 
-        /* ==================== INFO BOXES ==================== */
+        /* ==================== INFO BOX ==================== */
         .info-box {
             background: var(--blue-light);
-            border-left: 3px solid var(--blue);
+            border-left: 4px solid var(--blue);
             border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
-            padding: 0.875rem 1.125rem;
-            font-size: 0.8125rem;
+            padding: 1rem 1.25rem;
+            font-size: 0.9375rem;
             color: var(--g700);
             line-height: 1.7;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
         }
-        .info-box.warn {
-            background: var(--amber-light);
-            border-left-color: var(--amber);
-        }
-        .info-box.green {
-            background: var(--green-light);
-            border-left-color: var(--green);
-        }
+        .info-box.warn { background: var(--amber-light); border-left-color: var(--amber); }
+        .info-box.green { background: var(--green-light); border-left-color: var(--green); }
         .info-box strong { font-weight: 700; color: var(--g800); }
 
         /* ==================== DAY RULE BOX ==================== */
@@ -439,40 +411,44 @@
             background: linear-gradient(135deg, var(--green-light), #d1fae5);
             border: 1px solid #a7f3d0;
             border-radius: var(--radius-md);
-            padding: 1.125rem 1.25rem;
-            margin-bottom: 1.5rem;
-            font-size: 0.8125rem;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.75rem;
+            font-size: 0.9375rem;
             color: var(--green-dark);
-            line-height: 1.7;
+            line-height: 1.75;
         }
+        .day-rule-box .rule-header {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .day-rule-box .rule-header .rule-icon { font-size: 1.375rem; line-height: 1; }
+        .day-rule-box ul { margin: 0.5rem 0 0.5rem 1.5rem; }
+        .day-rule-box li { margin-bottom: 0.375rem; padding-left: 0.25rem; }
         .day-rule-box strong { font-weight: 700; }
-        .day-rule-box ul { margin: 0.5rem 0 0 1.375rem; }
-        .day-rule-box li { margin-bottom: 0.25rem; }
 
         /* ==================== TYPE PILLS ==================== */
-        .type-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.25rem;
-        }
+        .type-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
         .type-pill {
-            padding: 0.4375rem 1rem;
+            padding: 0.5rem 1.125rem;
             border: 1.5px solid var(--g200);
             border-radius: var(--radius-full);
-            font-size: 0.8125rem;
+            font-size: 0.9375rem;
             font-weight: 600;
             cursor: pointer;
             background: var(--g0);
             color: var(--g500);
             transition: all var(--duration) var(--ease);
             font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
         }
-        .type-pill:hover {
-            border-color: var(--g300);
-            background: var(--g50);
-            transform: translateY(-1px);
-        }
+        .type-pill .pill-icon { font-size: 1.125rem; line-height: 1; }
+        .type-pill:hover { border-color: var(--g300); background: var(--g50); transform: translateY(-1px); }
         .type-pill.active {
             border-color: var(--purple);
             background: var(--purple-light);
@@ -481,15 +457,15 @@
         }
 
         /* ==================== LIST ITEMS ==================== */
-        .list-area { margin-top: 1.25rem; }
+        .list-area { margin-top: 1.5rem; }
         .list-item {
             display: flex;
             align-items: center;
-            padding: 0.875rem 1rem;
+            padding: 1rem 1.125rem;
             background: var(--g50);
             border-radius: var(--radius-sm);
-            margin-bottom: 0.5rem;
-            gap: 0.75rem;
+            margin-bottom: 0.625rem;
+            gap: 0.875rem;
             border: 1px solid var(--g200);
             transition: all var(--duration) var(--ease);
             animation: fadeInUp 0.25s var(--ease);
@@ -501,8 +477,8 @@
             transform: translateY(-1px);
         }
         .item-dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: var(--radius-full);
             flex-shrink: 0;
         }
@@ -511,7 +487,7 @@
         .item-dot.sentence { background: var(--g400); }
         .item-info { flex: 1; min-width: 0; }
         .item-name {
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 600;
             color: var(--g800);
             white-space: nowrap;
@@ -519,17 +495,18 @@
             text-overflow: ellipsis;
         }
         .item-meta {
-            font-size: 0.75rem;
+            font-size: 0.8125rem;
             color: var(--g400);
-            margin-top: 2px;
+            margin-top: 3px;
             font-weight: 400;
+            line-height: 1.5;
         }
-        .item-badges { display: flex; gap: 0.375rem; flex-shrink: 0; }
+        .item-badges { display: flex; gap: 0.375rem; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
         .item-badge {
-            font-size: 0.6875rem;
+            font-size: 0.8125rem;
             font-weight: 700;
             white-space: nowrap;
-            padding: 0.1875rem 0.625rem;
+            padding: 0.25rem 0.75rem;
             border-radius: var(--radius-full);
             background: var(--g100);
             color: var(--g500);
@@ -543,80 +520,58 @@
             border: none;
             color: var(--g300);
             cursor: pointer;
-            padding: 4px;
-            font-size: 1.25rem;
+            padding: 6px;
+            font-size: 1.375rem;
             line-height: 1;
             flex-shrink: 0;
             transition: all var(--duration) var(--ease);
             border-radius: var(--radius-xs);
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .btn-remove:hover {
-            color: var(--red);
-            background: var(--red-light);
-        }
+        .btn-remove:hover { color: var(--red); background: var(--red-light); }
 
         .empty-state {
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.75rem;
             color: var(--g300);
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 400;
         }
 
-        /* ==================== RESULT CARD ==================== */
-        .result-card {
-            border-top: none;
-            overflow: hidden;
-            position: relative;
-        }
+        /* ==================== RESULT ==================== */
+        .result-card { overflow: hidden; position: relative; }
         .result-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
+            top: 0; left: 0; right: 0;
+            height: 5px;
             background: var(--g200);
             transition: background 0.5s var(--ease);
         }
-        .result-card.pass-border::before {
-            background: linear-gradient(90deg, var(--green), #34d399);
-        }
-        .result-card.fail-border::before {
-            background: linear-gradient(90deg, var(--red), #f87171);
-        }
+        .result-card.pass-border::before { background: linear-gradient(90deg, var(--green), #34d399); }
+        .result-card.fail-border::before { background: linear-gradient(90deg, var(--red), #f87171); }
 
-        .result-status {
-            text-align: center;
-            padding: 1.5rem 0 1rem;
-        }
+        .result-status { text-align: center; padding: 1.75rem 0 1.25rem; }
         .result-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.4375rem 1.25rem;
+            padding: 0.5rem 1.375rem;
             border-radius: var(--radius-full);
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 700;
             animation: popIn 0.5s var(--ease);
-            letter-spacing: -0.005em;
         }
-        .pass .result-badge {
-            background: var(--green-light);
-            color: var(--green-dark);
-        }
-        .fail .result-badge {
-            background: var(--red-light);
-            color: var(--red-dark);
-        }
+        .result-badge .badge-icon { font-size: 1.25rem; line-height: 1; }
+        .pass .result-badge { background: var(--green-light); color: var(--green-dark); }
+        .fail .result-badge { background: var(--red-light); color: var(--red-dark); }
 
         .result-number {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 900;
             letter-spacing: -0.05em;
             line-height: 1.1;
@@ -627,67 +582,64 @@
         .fail .result-number { color: var(--red); }
 
         .result-subtitle {
-            font-size: 1rem;
+            font-size: 1.0625rem;
             color: var(--g500);
-            margin-top: 0.25rem;
+            margin-top: 0.375rem;
             font-weight: 400;
+            line-height: 1.6;
         }
         .result-subtitle strong { color: var(--g700); font-weight: 700; }
 
         .eligible-date {
             text-align: center;
-            padding: 1rem 1.25rem;
+            padding: 1.125rem 1.5rem;
             background: linear-gradient(135deg, var(--amber-light), #fef9c3);
             border-radius: var(--radius-sm);
-            margin-top: 1rem;
-            font-size: 0.9375rem;
+            margin-top: 1.25rem;
+            font-size: 1rem;
             color: var(--amber-dark);
             font-weight: 600;
             border: 1px solid #fde68a;
+            line-height: 1.6;
         }
+        .eligible-date .date-icon { font-size: 1.375rem; vertical-align: middle; margin-right: 0.25rem; }
 
-        /* ==================== PROGRESS BAR ==================== */
+        /* ==================== PROGRESS ==================== */
         .progress-wrap { padding: 1rem 0 0.5rem; }
         .progress-labels {
             display: flex;
             justify-content: space-between;
-            font-size: 0.75rem;
+            font-size: 0.8125rem;
             font-weight: 600;
             color: var(--g400);
             margin-bottom: 0.5rem;
         }
         .progress-track {
-            height: 14px;
+            height: 16px;
             background: var(--g100);
-            border-radius: 7px;
+            border-radius: 8px;
             position: relative;
             overflow: hidden;
         }
         .progress-fill {
             height: 100%;
-            border-radius: 7px;
+            border-radius: 8px;
             transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
             position: relative;
         }
-        .pass .progress-fill {
-            background: linear-gradient(90deg, #34d399, var(--green));
-        }
-        .fail .progress-fill {
-            background: linear-gradient(90deg, #fca5a5, var(--red));
-        }
+        .pass .progress-fill { background: linear-gradient(90deg, #34d399, var(--green)); }
+        .fail .progress-fill { background: linear-gradient(90deg, #fca5a5, var(--red)); }
         .progress-fill::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
             animation: shimmer 2.5s ease-in-out infinite;
         }
-
         .progress-marker {
             position: absolute;
-            top: -5px;
-            bottom: -5px;
-            width: 2.5px;
+            top: -6px; bottom: -6px;
+            width: 3px;
             background: var(--g800);
             border-radius: 2px;
             z-index: 2;
@@ -698,53 +650,52 @@
             bottom: calc(100% + 6px);
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.6875rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: var(--g600);
             white-space: nowrap;
             background: var(--g0);
-            padding: 0.125rem 0.375rem;
-            border-radius: 4px;
+            padding: 0.125rem 0.5rem;
+            border-radius: 6px;
             box-shadow: var(--shadow-xs);
         }
 
         /* ==================== BREAKDOWN ==================== */
         .breakdown {
             border-top: 1px solid var(--g200);
-            padding-top: 1.5rem;
-            margin-top: 1.5rem;
+            padding-top: 1.75rem;
+            margin-top: 1.75rem;
         }
         .breakdown-title {
-            font-size: 0.75rem;
+            font-size: 0.8125rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--g400);
-            margin-bottom: 0.875rem;
+            margin-bottom: 1rem;
         }
         .breakdown-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 0;
-            font-size: 0.875rem;
+            padding: 0.625rem 0.625rem;
+            font-size: 0.9375rem;
             transition: background var(--duration) var(--ease);
             border-radius: var(--radius-xs);
-            margin: 0 -0.5rem;
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
+            margin: 0 -0.625rem;
         }
         .breakdown-row:hover { background: var(--g50); }
         .breakdown-label {
-            color: var(--g500);
+            color: var(--g600);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.625rem;
             font-weight: 450;
+            line-height: 1.5;
         }
         .breakdown-label .dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: var(--radius-full);
             flex-shrink: 0;
         }
@@ -757,124 +708,158 @@
         }
         .breakdown-row.total {
             border-top: 2px solid var(--g200);
-            margin-top: 0.625rem;
-            padding-top: 1rem;
-            font-size: 1rem;
+            margin-top: 0.75rem;
+            padding-top: 1.125rem;
+            font-size: 1.0625rem;
         }
         .breakdown-row.total:hover { background: transparent; }
-        .breakdown-row.total .breakdown-label {
-            color: var(--g900);
-            font-weight: 700;
-        }
-        .breakdown-row.total .breakdown-value {
-            color: var(--g950);
-            font-size: 1.125rem;
-        }
-        .val-note {
-            font-weight: 400;
-            color: var(--g400);
-            font-size: 0.8125rem;
-        }
+        .breakdown-row.total .breakdown-label { color: var(--g900); font-weight: 700; }
+        .breakdown-row.total .breakdown-value { color: var(--g950); font-size: 1.1875rem; }
+        .val-note { font-weight: 400; color: var(--g400); font-size: 0.875rem; }
         .breakdown-sub {
-            padding: 0 0 0.375rem 2rem;
-            font-size: 0.75rem;
+            padding: 0 0 0.5rem 2.5rem;
+            font-size: 0.8125rem;
             color: var(--g400);
             font-weight: 400;
+            line-height: 1.5;
         }
 
-        /* ==================== WARNING BOXES ==================== */
+        /* ==================== WARNINGS ==================== */
         .warning-box {
-            margin-top: 1rem;
-            padding: 0.875rem 1.125rem;
+            margin-top: 1.25rem;
+            padding: 1rem 1.25rem;
             border-radius: var(--radius-sm);
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             display: flex;
             align-items: flex-start;
-            gap: 0.625rem;
-            line-height: 1.6;
+            gap: 0.75rem;
+            line-height: 1.7;
             font-weight: 450;
         }
-        .warning-box.amber {
-            background: var(--amber-light);
-            color: var(--amber-dark);
-            border: 1px solid #fde68a;
-        }
-        .warning-box.blue {
-            background: var(--blue-light);
-            color: #1e40af;
-            border: 1px solid #bfdbfe;
-        }
+        .warning-box .warn-icon { font-size: 1.375rem; line-height: 1; flex-shrink: 0; margin-top: 0.125rem; }
+        .warning-box.amber { background: var(--amber-light); color: var(--amber-dark); border: 1px solid #fde68a; }
+        .warning-box.blue { background: var(--blue-light); color: #1e40af; border: 1px solid #bfdbfe; }
         .warning-box strong { font-weight: 700; }
 
         /* ==================== PLACEHOLDER ==================== */
         .placeholder {
             text-align: center;
-            padding: 3rem 1.5rem;
+            padding: 3.5rem 1.5rem;
             color: var(--g300);
         }
-        .placeholder-icon {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 0.75rem;
-            opacity: 0.35;
-        }
-        .placeholder-text {
-            font-size: 0.9375rem;
-            font-weight: 450;
-            line-height: 1.6;
-        }
+        .placeholder-icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; opacity: 0.35; }
+        .placeholder-text { font-size: 1rem; font-weight: 450; line-height: 1.6; }
 
         /* ==================== ANIMATIONS ==================== */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            60% { transform: scale(1.04); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes shimmer {
-            0%, 100% { transform: translateX(-150%); }
-            50% { transform: translateX(150%); }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 60% { transform: scale(1.04); } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes shimmer { 0%, 100% { transform: translateX(-150%); } 50% { transform: translateX(150%); } }
 
         /* ==================== RESPONSIVE ==================== */
-        @media (max-width: 640px) {
-            .page-wrap { padding: 2rem 1rem 4rem; }
-            .card { padding: 1.5rem; border-radius: var(--radius-md); }
+        @media (max-width: 768px) {
+            .page-wrap { padding: 2rem 1.25rem 5rem; }
+            .card { padding: 1.75rem; }
+            .page-header h1 { font-size: 1.75rem; }
+            .page-header p { font-size: 1rem; }
+            .card-letter { width: 44px; height: 44px; font-size: 1.125rem; }
+            .card-title { font-size: 1.125rem; }
+            .result-number { font-size: 3.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .top-banner { padding: 0.625rem 1rem; }
+            .top-banner span { font-size: 0.8125rem; }
+            .page-wrap { padding: 1.5rem 1rem 4rem; }
             .page-header { margin-bottom: 2rem; }
+            .page-header-icon { width: 64px; height: 64px; font-size: 1.875rem; }
             .page-header h1 { font-size: 1.5rem; }
             .page-header p { font-size: 0.9375rem; }
+
+            .stepper { margin-bottom: 1.75rem; gap: 0; }
+            .step { padding: 0.375rem 0.25rem; }
+            .step-num { width: 32px; height: 32px; font-size: 0.8125rem; }
+            .step-label { display: none; }
+            .step-connector { width: 12px; }
+
+            .card {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                border-radius: var(--radius-md);
+            }
+            .card-head { gap: 0.875rem; margin-bottom: 1.5rem; }
+            .card-letter { width: 42px; height: 42px; font-size: 1.0625rem; border-radius: var(--radius-xs); }
+            .card-title { font-size: 1.0625rem; }
+            .card-desc { font-size: 0.875rem; }
+
+            .field { margin-bottom: 1.25rem; }
+            .field > label { font-size: 0.9375rem; margin-bottom: 0.4375rem; }
+            input[type="date"],
+            input[type="text"],
+            select {
+                font-size: 1rem;
+                padding: 0.8125rem 0.875rem;
+                min-height: 50px;
+            }
+            .field-hint { font-size: 0.8125rem; }
+
             .row.stack-sm { flex-direction: column; gap: 0; }
-            .row.stack-sm > .field { margin-bottom: 1rem; }
-            .result-number { font-size: 3rem; }
+            .row.stack-sm > .field { margin-bottom: 1.25rem; }
+
+            .radio-group { gap: 0.625rem; }
+            .radio-label { padding: 0.8125rem 1rem; font-size: 0.9375rem; min-height: 50px; }
+
+            .btn { height: 50px; font-size: 0.9375rem; padding: 0 1.25rem; }
+            .btn-sm { height: 48px; }
+
+            .info-box { font-size: 0.875rem; padding: 0.875rem 1rem; }
+            .day-rule-box { padding: 1.125rem 1.25rem; font-size: 0.875rem; }
+            .day-rule-box .rule-header { font-size: 0.9375rem; }
+
             .type-pills { gap: 0.375rem; }
-            .type-pill { font-size: 0.75rem; padding: 0.375rem 0.75rem; }
-            .card-head { gap: 0.75rem; }
-            .card-letter { width: 36px; height: 36px; font-size: 0.9375rem; }
-            .stepper { margin-bottom: 2rem; }
+            .type-pill { font-size: 0.8125rem; padding: 0.4375rem 0.875rem; }
+            .type-pill .pill-icon { font-size: 1rem; }
+
+            .list-item { padding: 0.875rem; gap: 0.75rem; }
+            .item-name { font-size: 0.875rem; }
+            .item-meta { font-size: 0.8125rem; }
+            .item-badges { flex-direction: column; align-items: flex-end; gap: 0.25rem; }
+            .item-badge { font-size: 0.75rem; padding: 0.1875rem 0.625rem; }
+
+            .result-number { font-size: 3rem; }
+            .result-subtitle { font-size: 0.9375rem; }
+            .result-badge { font-size: 0.8125rem; padding: 0.4375rem 1rem; }
+
+            .progress-track { height: 14px; }
+
+            .breakdown-row { font-size: 0.875rem; padding: 0.5rem; }
+            .breakdown-row.total { font-size: 1rem; }
+            .breakdown-row.total .breakdown-value { font-size: 1.0625rem; }
+
+            .warning-box { font-size: 0.875rem; padding: 0.875rem 1rem; gap: 0.625rem; }
+            .warning-box .warn-icon { font-size: 1.25rem; }
+
+            .eligible-date { font-size: 0.9375rem; padding: 1rem 1.125rem; }
         }
 
         @media (max-width: 380px) {
+            .page-wrap { padding: 1.25rem 0.75rem 3.5rem; }
             .card { padding: 1.25rem; }
+            .card-head { flex-direction: column; gap: 0.75rem; }
             .radio-group { flex-direction: column; gap: 0.5rem; }
-            .item-badges { flex-direction: column; gap: 0.25rem; }
+            .type-pills { gap: 0.3rem; }
+            .type-pill { font-size: 0.75rem; padding: 0.375rem 0.75rem; }
+            .result-number { font-size: 2.5rem; }
+            .breakdown-label { font-size: 0.8125rem; }
         }
     </style>
 </head>
 <body>
 
 <div class="top-banner">
-    <span>🍁 Physical Presence Calculator — Canadian Citizenship</span>
+    <span class="top-banner-icon">🍁</span>
+    <span>Physical Presence Calculator — Canadian Citizenship</span>
 </div>
 <div class="flag-bar">
     <div class="bar-red"></div>
@@ -902,7 +887,7 @@
         <div class="step" data-step="5"><div class="step-num">E</div><div class="step-label">Result</div></div>
     </div>
 
-    <!-- SECTION A -->
+    <!-- A -->
     <div class="card" id="sectionA">
         <div class="card-head">
             <div class="card-letter a">A</div>
@@ -915,7 +900,7 @@
             <label for="appDate">Application signing date <span class="req">*</span></label>
             <div class="row">
                 <div class="field"><input type="date" id="appDate"></div>
-                <button class="btn btn-secondary btn-sm" id="todayBtn" type="button">📍 Today</button>
+                <button class="btn btn-secondary btn-sm" id="todayBtn" type="button"><span class="btn-icon">📍</span> Today</button>
             </div>
             <div class="field-hint">If unsure, enter today's date to check eligibility.</div>
         </div>
@@ -925,11 +910,11 @@
             <div class="field-hint">See Box 45/46 on your IMM 1000, IMM 5292, IMM 5509, or back of your PR Card.</div>
         </div>
         <div class="info-box" id="windowInfo" style="display:none;margin-top:0.75rem;">
-            <strong>5-year window:</strong> <span id="windowText"></span>
+            <strong>📅 5-year window:</strong> <span id="windowText"></span>
         </div>
     </div>
 
-    <!-- SECTION B -->
+    <!-- B -->
     <div class="card" id="sectionB">
         <div class="card-head">
             <div class="card-letter b">B</div>
@@ -943,41 +928,41 @@
             <div class="radio-group">
                 <div class="radio-option">
                     <input type="radio" name="hadTemp" id="hadTempYes" value="yes">
-                    <label class="radio-label" for="hadTempYes">✓ Yes</label>
+                    <label class="radio-label" for="hadTempYes"><span class="radio-icon">✅</span> Yes</label>
                 </div>
                 <div class="radio-option">
                     <input type="radio" name="hadTemp" id="hadTempNo" value="no" checked>
-                    <label class="radio-label" for="hadTempNo">✗ No</label>
+                    <label class="radio-label" for="hadTempNo"><span class="radio-icon">❌</span> No</label>
                 </div>
             </div>
         </div>
         <div class="conditional" id="tempSection">
-            <div class="info-box" style="margin-top:1.25rem;">
+            <div class="info-box" style="margin-top:1.5rem;">
                 Each day physically present in Canada as a temporary resident or protected person <strong>before PR</strong> counts as <strong>½ day</strong>, up to a maximum credit of <strong>365 days</strong>.
             </div>
             <div class="info-box warn">
-                <strong>Important:</strong> Work/study permits held while a refugee claim or PRRA was being assessed do <strong>not</strong> grant temporary resident status. Only time after a positive Protected Person decision counts.
+                <strong>⚠️ Important:</strong> Work/study permits held while a refugee claim or PRRA was being assessed do <strong>not</strong> grant temporary resident status. Only time after a positive Protected Person decision counts.
             </div>
             <div class="type-pills" id="typePills">
-                <button class="type-pill active" data-type="student">🎓 Student</button>
-                <button class="type-pill" data-type="worker">💼 Worker</button>
-                <button class="type-pill" data-type="visitor">🧳 Visitor</button>
-                <button class="type-pill" data-type="trp">📄 TRP Holder</button>
-                <button class="type-pill" data-type="protected">🛡️ Protected Person</button>
+                <button class="type-pill active" data-type="student"><span class="pill-icon">🎓</span> Student</button>
+                <button class="type-pill" data-type="worker"><span class="pill-icon">💼</span> Worker</button>
+                <button class="type-pill" data-type="visitor"><span class="pill-icon">🧳</span> Visitor</button>
+                <button class="type-pill" data-type="trp"><span class="pill-icon">📄</span> TRP Holder</button>
+                <button class="type-pill" data-type="protected"><span class="pill-icon">🛡️</span> Protected Person</button>
             </div>
             <div class="row stack-sm">
                 <div class="field"><label for="tempStart">Start date</label><input type="date" id="tempStart"></div>
                 <div class="field"><label for="tempEnd">End date</label><input type="date" id="tempEnd"></div>
             </div>
-            <div class="row" style="margin-top:0.875rem;">
+            <div class="row" style="margin-top:1rem;">
                 <div class="field"><input type="text" id="tempLabel" placeholder="Label (optional)"></div>
-                <button class="btn btn-primary btn-sm" id="addTempBtn" type="button">+ Add</button>
+                <button class="btn btn-primary btn-sm" id="addTempBtn" type="button"><span class="btn-icon">➕</span> Add</button>
             </div>
             <div id="tempList"></div>
         </div>
     </div>
 
-    <!-- SECTION C -->
+    <!-- C -->
     <div class="card" id="sectionC">
         <div class="card-head">
             <div class="card-letter c">C</div>
@@ -991,31 +976,31 @@
             <div class="radio-group">
                 <div class="radio-option">
                     <input type="radio" name="hadSentence" id="hadSentenceYes" value="yes">
-                    <label class="radio-label" for="hadSentenceYes">✓ Yes</label>
+                    <label class="radio-label" for="hadSentenceYes"><span class="radio-icon">✅</span> Yes</label>
                 </div>
                 <div class="radio-option">
                     <input type="radio" name="hadSentence" id="hadSentenceNo" value="no" checked>
-                    <label class="radio-label" for="hadSentenceNo">✗ No</label>
+                    <label class="radio-label" for="hadSentenceNo"><span class="radio-icon">❌</span> No</label>
                 </div>
             </div>
         </div>
         <div class="conditional" id="sentenceSection">
-            <div class="info-box warn" style="margin-top:1.25rem;">
-                Time spent serving a sentence <strong>cannot</strong> be counted towards physical presence.
+            <div class="info-box warn" style="margin-top:1.5rem;">
+                <strong>⚠️</strong> Time spent serving a sentence <strong>cannot</strong> be counted towards physical presence.
             </div>
             <div class="row stack-sm">
                 <div class="field"><label for="senStart">Start date</label><input type="date" id="senStart"></div>
                 <div class="field"><label for="senEnd">End date</label><input type="date" id="senEnd"></div>
             </div>
-            <div class="row" style="margin-top:0.875rem;">
+            <div class="row" style="margin-top:1rem;">
                 <div class="field"><input type="text" id="senLabel" placeholder="Description (optional)"></div>
-                <button class="btn btn-primary btn-sm" id="addSenBtn" type="button">+ Add</button>
+                <button class="btn btn-primary btn-sm" id="addSenBtn" type="button"><span class="btn-icon">➕</span> Add</button>
             </div>
             <div id="senList"></div>
         </div>
     </div>
 
-    <!-- SECTION D -->
+    <!-- D -->
     <div class="card" id="sectionD">
         <div class="card-head">
             <div class="card-letter d">D</div>
@@ -1025,7 +1010,7 @@
             </div>
         </div>
         <div class="day-rule-box">
-            <strong>How days are counted:</strong>
+            <div class="rule-header"><span class="rule-icon">📋</span> How days are counted</div>
             <ul>
                 <li>Any part of a day physically in Canada counts as <strong>1 full day</strong>.</li>
                 <li>The <strong>day you leave</strong> Canada counts as a day <strong>in</strong> Canada.</li>
@@ -1037,14 +1022,14 @@
             <div class="field"><label for="absStart">Departure date</label><input type="date" id="absStart"></div>
             <div class="field"><label for="absEnd">Return date</label><input type="date" id="absEnd"></div>
         </div>
-        <div class="row" style="margin-top:0.875rem;">
+        <div class="row" style="margin-top:1rem;">
             <div class="field"><input type="text" id="absReason" placeholder="Destination / reason (optional)"></div>
-            <button class="btn btn-primary btn-sm" id="addAbsBtn" type="button">+ Add Trip</button>
+            <button class="btn btn-primary btn-sm" id="addAbsBtn" type="button"><span class="btn-icon">✈️</span> Add Trip</button>
         </div>
         <div id="absList"></div>
     </div>
 
-    <!-- SECTION E -->
+    <!-- E -->
     <div class="card result-card" id="sectionE">
         <div class="card-head">
             <div class="card-letter" id="resultLetterIcon" style="background:linear-gradient(135deg, var(--g400), var(--g300));">E</div>
@@ -1067,23 +1052,14 @@
     var absences = [], tempPeriods = [], sentences = [];
     var nextId = 0;
     var selectedTempType = 'student';
-
     var typeLabels = { student:'Student', worker:'Worker', visitor:'Visitor', trp:'TRP Holder', protected:'Protected Person' };
     var typeEmojis = { student:'🎓', worker:'💼', visitor:'🧳', trp:'📄', protected:'🛡️' };
 
     function el(id) { return document.getElementById(id); }
     function qsa(sel) { return document.querySelectorAll(sel); }
-
-    function parseDate(s) {
-        if (!s) return null;
-        var p = s.split('-');
-        return new Date(+p[0], +p[1]-1, +p[2]);
-    }
+    function parseDate(s) { if (!s) return null; var p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
     function daysBetween(a, b) { return Math.round((b.getTime() - a.getTime()) / 864e5); }
-    function fmtDate(d) {
-        var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        return m[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-    }
+    function fmtDate(d) { var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return m[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(); }
     function fmtN(n) { return Number.isInteger(n) ? n.toLocaleString('en-US') : n.toLocaleString('en-US',{maximumFractionDigits:1}); }
     function todayStr() { var d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
     function esc(s) { var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
@@ -1094,20 +1070,15 @@
         var span = daysBetween(departDate, returnDate);
         return Math.max(0, span - 1);
     }
-
     function absentDaysInPeriod(deptTs, retTs, pStartTs, pEndTs) {
-        var absentStart = deptTs + 864e5;
-        var absentEnd = retTs;
+        var absentStart = deptTs + 864e5, absentEnd = retTs;
         if (absentEnd <= absentStart) return 0;
-        var s = Math.max(absentStart, pStartTs);
-        var e = Math.min(absentEnd, pEndTs);
+        var s = Math.max(absentStart, pStartTs), e = Math.min(absentEnd, pEndTs);
         return e > s ? Math.round((e - s) / 864e5) : 0;
     }
-
     function inclusiveOverlap(aStartTs, aEndInclTs, pStartTs, pEndTs) {
         var aE = aEndInclTs + 864e5;
-        var s = Math.max(aStartTs, pStartTs);
-        var e = Math.min(aE, pEndTs);
+        var s = Math.max(aStartTs, pStartTs), e = Math.min(aE, pEndTs);
         return e > s ? Math.round((e - s) / 864e5) : 0;
     }
 
@@ -1129,43 +1100,18 @@
     }
 
     function updateStepper() {
-        var steps = qsa('.step');
-        var connectors = qsa('.step-connector');
-        var appOk = !!el('appDate').value;
-        var prOk = !!el('prDate').value;
-        var datesOk = appOk && prOk;
+        var steps = qsa('.step'), connectors = qsa('.step-connector');
+        var appOk = !!el('appDate').value, prOk = !!el('prDate').value, datesOk = appOk && prOk;
         steps[0].className = 'step ' + (datesOk ? 'completed' : 'active');
         connectors[0].className = 'step-connector' + (datesOk ? ' done' : '');
-        steps[1].className = 'step ' + (datesOk ? 'completed' : '');
-        connectors[1].className = 'step-connector' + (datesOk ? ' done' : '');
-        steps[2].className = 'step ' + (datesOk ? 'completed' : '');
-        connectors[2].className = 'step-connector' + (datesOk ? ' done' : '');
-        steps[3].className = 'step ' + (datesOk ? 'completed' : '');
-        connectors[3].className = 'step-connector' + (datesOk ? ' done' : '');
+        for (var i = 1; i <= 3; i++) { steps[i].className = 'step ' + (datesOk ? 'completed' : ''); connectors[i].className = 'step-connector' + (datesOk ? ' done' : ''); }
         var resultReady = datesOk && parseDate(el('appDate').value) > parseDate(el('prDate').value);
         steps[4].className = 'step ' + (resultReady ? 'active' : '');
     }
 
-    qsa('input[name="hadTemp"]').forEach(function(r) {
-        r.addEventListener('change', function() {
-            el('tempSection').classList.toggle('visible', this.value === 'yes');
-            calculate();
-        });
-    });
-    qsa('input[name="hadSentence"]').forEach(function(r) {
-        r.addEventListener('change', function() {
-            el('sentenceSection').classList.toggle('visible', this.value === 'yes');
-            calculate();
-        });
-    });
-
-    qsa('.type-pill').forEach(function(pill) {
-        pill.addEventListener('click', function() {
-            qsa('.type-pill').forEach(function(p){ p.classList.remove('active'); });
-            pill.classList.add('active');
-            selectedTempType = pill.getAttribute('data-type');
-        });
-    });
+    qsa('input[name="hadTemp"]').forEach(function(r) { r.addEventListener('change', function() { el('tempSection').classList.toggle('visible', this.value === 'yes'); calculate(); }); });
+    qsa('input[name="hadSentence"]').forEach(function(r) { r.addEventListener('change', function() { el('sentenceSection').classList.toggle('visible', this.value === 'yes'); calculate(); }); });
+    qsa('.type-pill').forEach(function(pill) { pill.addEventListener('click', function() { qsa('.type-pill').forEach(function(p){ p.classList.remove('active'); }); pill.classList.add('active'); selectedTempType = pill.getAttribute('data-type'); }); });
 
     function addTemp() {
         var s = el('tempStart').value, e = el('tempEnd').value;
@@ -1242,7 +1188,7 @@
             var absent = absentDaysForTrip(dept, ret);
             var inCanada = totalSpan - absent;
             h += '<div class="list-item"><div class="item-dot absence"></div><div class="item-info"><div class="item-name">' + esc(a.reason || 'Trip abroad') + '</div>' +
-                '<div class="item-meta">' + fmtDate(dept) + ' – ' + fmtDate(ret) + ' (' + totalSpan + '-day trip)</div></div>' +
+                '<div class="item-meta">✈️ ' + fmtDate(dept) + ' – ' + fmtDate(ret) + ' (' + totalSpan + '-day trip)</div></div>' +
                 '<div class="item-badges"><div class="item-badge away">' + absent + 'd absent</div><div class="item-badge incan">' + inCanada + 'd in 🇨🇦</div></div>' +
                 '<button class="btn-remove" onclick="_removeAbs('+a.id+')" title="Remove">×</button></div>';
         });
@@ -1251,9 +1197,7 @@
 
     function calculate() {
         var appStr = el('appDate').value, prStr = el('prDate').value;
-        var out = el('resultArea');
-        var rc = el('sectionE');
-        var rli = el('resultLetterIcon');
+        var out = el('resultArea'), rc = el('sectionE'), rli = el('resultLetterIcon');
 
         if (!appStr || !prStr) {
             out.innerHTML = '<div class="placeholder"><span class="placeholder-icon">📊</span><span class="placeholder-text">Enter your PR and application dates to see your result.</span></div>';
@@ -1264,8 +1208,7 @@
         var appDate = parseDate(appStr), prDate = parseDate(prStr);
         if (appDate <= prDate) {
             out.innerHTML = '<div class="placeholder"><span class="placeholder-icon">⚠️</span><span class="placeholder-text">Application date must be after your PR date.</span></div>';
-            rc.className = 'card result-card';
-            return;
+            rc.className = 'card result-card'; return;
         }
 
         var windowStart = new Date(appDate.getFullYear() - 5, appDate.getMonth(), appDate.getDate());
@@ -1292,7 +1235,6 @@
         });
 
         var prPresent = Math.max(0, prDaysInWindow - prAbsent - prSentence);
-
         var hadTemp = document.querySelector('input[name="hadTemp"]:checked').value === 'yes';
         var prePrCredit = 0, prePrPresentDays = 0, tempDaysUsed = 0;
 
@@ -1305,15 +1247,13 @@
                     var absentStart = deptTs + 864e5, absentEnd = retTs;
                     if (absentEnd <= absentStart) return;
                     var tEndExcl = tE + 864e5;
-                    var s3 = Math.max(absentStart, tS, ppStartTs);
-                    var e3 = Math.min(absentEnd, tEndExcl, ppEndTs);
+                    var s3 = Math.max(absentStart, tS, ppStartTs), e3 = Math.min(absentEnd, tEndExcl, ppEndTs);
                     if (e3 > s3) overlap -= Math.round((e3 - s3) / 864e5);
                 });
                 sentences.forEach(function(se) {
                     var seS = parseDate(se.start).getTime(), seE = parseDate(se.end).getTime() + 864e5;
                     var tEndExcl = tE + 864e5;
-                    var s3 = Math.max(seS, tS, ppStartTs);
-                    var e3 = Math.min(seE, tEndExcl, ppEndTs);
+                    var s3 = Math.max(seS, tS, ppStartTs), e3 = Math.min(seE, tEndExcl, ppEndTs);
                     if (e3 > s3) overlap -= Math.round((e3 - s3) / 864e5);
                 });
                 tempDaysUsed += Math.max(0, overlap);
@@ -1343,8 +1283,7 @@
         var policeCertNeeded = false;
         absences.forEach(function(a) {
             var aS = parseDate(a.start), aE = parseDate(a.end);
-            var effAbsentStart = addDays(aS, 1);
-            var effAbsentEnd = addDays(aE, -1);
+            var effAbsentStart = addDays(aS, 1), effAbsentEnd = addDays(aE, -1);
             if (effAbsentEnd >= effAbsentStart) {
                 if (effAbsentStart < fourYearStart) effAbsentStart = fourYearStart;
                 if (effAbsentEnd > appDate) effAbsentEnd = appDate;
@@ -1360,7 +1299,7 @@
         var fillPct = clamp((creditedDays / barMax) * 100, 0, 100);
         var overallPass = isEligible && minPrMet;
         var cls = overallPass ? 'pass' : 'fail';
-        var badge = overallPass ? '✅ You meet the physical presence requirement' : '⏳ You do not yet meet the requirement';
+        var badge = overallPass ? '<span class="badge-icon">✅</span> You meet the physical presence requirement' : '<span class="badge-icon">⏳</span> You do not yet meet the requirement';
 
         rc.className = 'card result-card ' + (cls === 'pass' ? 'pass-border' : 'fail-border');
         rli.style.background = cls === 'pass' ? 'linear-gradient(135deg, var(--green), #34d399)' : 'linear-gradient(135deg, var(--red), #f87171)';
@@ -1379,7 +1318,7 @@
         html += '<div class="progress-marker" style="left:' + markerPct + '%"></div></div></div>';
 
         if (!isEligible && eligibleDateStr) {
-            html += '<div class="eligible-date">📅 Estimated eligibility date (if you remain in Canada): <strong>' + eligibleDateStr + '</strong></div>';
+            html += '<div class="eligible-date"><span class="date-icon">📅</span> Estimated eligibility date (if you remain in Canada): <strong>' + eligibleDateStr + '</strong></div>';
         }
         html += '</div>';
 
@@ -1390,7 +1329,7 @@
 
         if (absences.length > 0) {
             html += bRow('#d97706', 'Absence days (full days outside Canada)', '−' + fmtN(prAbsent + ppAbsent));
-            html += '<div class="breakdown-sub">Departure & return days counted as in Canada</div>';
+            html += '<div class="breakdown-sub">✈️ Departure & return days counted as in Canada</div>';
         }
         if (totalSentence > 0) {
             html += bRow('#6b7280', 'Sentence days (excluded)', '−' + fmtN(totalSentence));
@@ -1409,13 +1348,13 @@
         html += '</div>';
 
         if (!minPrMet) {
-            html += '<div class="warning-box amber">⚠️ <span>You must be a permanent resident for a <strong>minimum of 2 years</strong> (730 days) before applying. You have <strong>' + fmtN(prTotalDays) + ' days</strong> as a PR. Earliest date: <strong>' + fmtDate(addDays(prDate, 730)) + '</strong>.</span></div>';
+            html += '<div class="warning-box amber"><span class="warn-icon">⚠️</span><span>You must be a permanent resident for a <strong>minimum of 2 years</strong> (730 days) before applying. You have <strong>' + fmtN(prTotalDays) + ' days</strong> as a PR. Earliest date: <strong>' + fmtDate(addDays(prDate, 730)) + '</strong>.</span></div>';
         }
         if (policeCertNeeded) {
-            html += '<div class="warning-box blue">🔵 <span>You were outside Canada for <strong>183+ consecutive days</strong> within the 4-year window. You may need to provide a <strong>foreign police certificate</strong>.</span></div>';
+            html += '<div class="warning-box blue"><span class="warn-icon">🔵</span><span>You were outside Canada for <strong>183+ consecutive days</strong> within the 4-year window. You may need to provide a <strong>foreign police certificate</strong>.</span></div>';
         }
         if (overallPass) {
-            html += '<div class="info-box green" style="margin-top:1rem;"><strong>Recommendation:</strong> Apply with more than the minimum 1,095 days to account for any miscalculations. Attach a copy of this calculation to your Application for Canadian Citizenship (no need to complete form CIT 0407).</div>';
+            html += '<div class="info-box green" style="margin-top:1.25rem;"><strong>💡 Recommendation:</strong> Apply with more than the minimum 1,095 days to account for any miscalculations. Attach a copy of this calculation to your Application for Canadian Citizenship (no need to complete form CIT 0407).</div>';
         }
 
         out.innerHTML = html;
