@@ -1,1372 +1,1431 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physical Presence Calculator – Canadian Citizenship</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Presence Calculator – Canadian Citizenship</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --primary-light: #eef2ff;
-            --primary-glow: rgba(79,70,229,0.12);
-            --primary-shadow: rgba(79,70,229,0.25);
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-glow: rgba(37,99,235,0.15);
+  --primary-shadow: rgba(37,99,235,0.3);
+  --green: #16a34a;
+  --green-light: #f0fdf4;
+  --green-dark: #15803d;
+  --red: #dc2626;
+  --red-light: #fef2f2;
+  --red-dark: #b91c1c;
+  --amber: #d97706;
+  --amber-light: #fffbeb;
+  --purple: #7c3aed;
+  --purple-light: #f5f3ff;
+  --blue-light: #eff6ff;
+  --canadian-red: #d52b1e;
+  --g0: #ffffff;
+  --g50: #f8fafc;
+  --g100: #f1f5f9;
+  --g200: #e2e8f0;
+  --g300: #cbd5e1;
+  --g400: #94a3b8;
+  --g500: #64748b;
+  --g600: #475569;
+  --g700: #334155;
+  --g800: #1e293b;
+  --g900: #0f172a;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  --ease: cubic-bezier(0.4,0,0.2,1);
+}
 
-            --green: #10b981;
-            --green-light: #ecfdf5;
-            --green-dark: #059669;
-            --green-shadow: rgba(16,185,129,0.2);
+html { scroll-behavior: smooth; }
 
-            --red: #ef4444;
-            --red-light: #fef2f2;
-            --red-dark: #dc2626;
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--g50);
+  color: var(--g800);
+  line-height: 1.7;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  overflow-x: hidden;
+}
 
-            --amber: #f59e0b;
-            --amber-light: #fffbeb;
-            --amber-dark: #d97706;
+/* ── TOP BANNER ── */
+.top-banner {
+  background: var(--canadian-red);
+  padding: 0.875rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(213,43,30,0.3);
+}
+.top-banner-icon { font-size: 1.375rem; line-height: 1; flex-shrink: 0; }
+.top-banner span {
+  color: #fff;
+  font-size: clamp(0.75rem, 3vw, 0.9375rem);
+  font-weight: 700;
+  text-align: center;
+}
+.flag-bar { display: flex; height: 4px; }
+.flag-bar .bar-red { background: var(--canadian-red); flex: 1; }
+.flag-bar .bar-white { background: #fff; flex: 2; }
 
-            --purple: #8b5cf6;
-            --purple-light: #f5f3ff;
+/* ── PAGE LAYOUT ── */
+.page-wrap {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 5vw, 3rem) clamp(0.875rem, 4vw, 1.5rem) clamp(3rem, 8vw, 6rem);
+}
 
-            --blue: #3b82f6;
-            --blue-light: #eff6ff;
+/* ── HEADER ── */
+.page-header {
+  text-align: center;
+  margin-bottom: clamp(1.75rem, 5vw, 3rem);
+  animation: fadeInDown 0.6s var(--ease) both;
+}
+.page-header-emoji {
+  font-size: clamp(2.25rem, 8vw, 3.5rem);
+  display: block;
+  margin-bottom: 0.875rem;
+  line-height: 1;
+}
+.page-header h1 {
+  font-size: clamp(1.5rem, 5vw, 2.75rem);
+  font-weight: 900;
+  color: var(--g900);
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+.page-header p {
+  color: var(--g500);
+  font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
+  line-height: 1.75;
+  max-width: 500px;
+  margin: 0 auto;
+}
 
-            --canadian-red: #d52b1e;
+/* ── STEPPER ── */
+/* Desktop: horizontal row */
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+  animation: fadeInDown 0.6s var(--ease) 0.1s both;
+  width: 100%;
+}
 
-            --g0: #ffffff;
-            --g50: #f9fafb;
-            --g100: #f3f4f6;
-            --g200: #e5e7eb;
-            --g300: #d1d5db;
-            --g400: #9ca3af;
-            --g500: #6b7280;
-            --g600: #4b5563;
-            --g700: #374151;
-            --g800: #1f2937;
-            --g900: #111827;
-            --g950: #030712;
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.step-num {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  background: var(--g200);
+  color: var(--g400);
+  transition: all 0.35s var(--ease);
+  flex-shrink: 0;
+  border: 2.5px solid transparent;
+}
+.step.active .step-num {
+  background: var(--primary); color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px var(--primary-shadow);
+  transform: scale(1.1);
+}
+.step.completed .step-num {
+  background: var(--green); color: #fff;
+  border-color: var(--green);
+}
+.step-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--g400);
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.step.active .step-label { color: var(--g900); }
+.step.completed .step-label { color: var(--green-dark); }
 
-            --radius-xs: 10px;
-            --radius-sm: 12px;
-            --radius-md: 16px;
-            --radius-lg: 20px;
-            --radius-xl: 28px;
-            --radius-full: 9999px;
+.step-connector {
+  flex: 1;
+  height: 3px;
+  min-width: 12px;
+  max-width: 48px;
+  background: var(--g200);
+  border-radius: 2px;
+  transition: background 0.4s;
+  flex-shrink: 1;
+}
+.step-connector.done { background: var(--green); }
 
-            --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.06), 0 4px 6px -4px rgba(0,0,0,0.04);
+/* Mobile stepper: compact pill row */
+@media (max-width: 560px) {
+  .stepper {
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 0.25rem;
+  }
+  .step {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    flex: 1;
+  }
+  .step-label {
+    font-size: 0.625rem;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.2;
+    max-width: 52px;
+  }
+  .step-num {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8125rem;
+  }
+  .step-connector {
+    flex: 1;
+    min-width: 8px;
+    max-width: 24px;
+    margin-bottom: 18px; /* push connector up to align with circles */
+    align-self: flex-start;
+    margin-top: 17px;
+  }
+}
 
-            --ease: cubic-bezier(0.4, 0, 0.2, 1);
-            --duration: 200ms;
+@media (max-width: 380px) {
+  .step-label { font-size: 0.5625rem; max-width: 42px; }
+  .step-num { width: 30px; height: 30px; font-size: 0.75rem; }
+}
 
-            font-size: 16px;
-        }
+/* ── CARDS ── */
+.card {
+  background: var(--g0);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 5vw, 2.5rem);
+  margin-bottom: clamp(0.875rem, 3vw, 1.5rem);
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--g200);
+  transition: box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+  animation: fadeInUp 0.5s var(--ease) both;
+}
+.card:nth-child(1) { animation-delay: 0.00s; }
+.card:nth-child(2) { animation-delay: 0.05s; }
+.card:nth-child(3) { animation-delay: 0.10s; }
+.card:nth-child(4) { animation-delay: 0.15s; }
+.card:nth-child(5) { animation-delay: 0.20s; }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--g50);
-            color: var(--g800);
-            line-height: 1.7;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            font-size: 1rem;
-        }
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.75rem, 3vw, 1.25rem);
+  margin-bottom: clamp(1.25rem, 4vw, 2rem);
+}
+.card-icon {
+  width: clamp(44px, 10vw, 56px);
+  height: clamp(44px, 10vw, 56px);
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  font-weight: 900;
+  flex-shrink: 0;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.card-icon.a { background: linear-gradient(135deg,#2563eb,#60a5fa); }
+.card-icon.b { background: linear-gradient(135deg,#7c3aed,#a78bfa); }
+.card-icon.c { background: linear-gradient(135deg,#475569,#94a3b8); }
+.card-icon.d { background: linear-gradient(135deg,#d97706,#fbbf24); }
+.card-icon.e { background: linear-gradient(135deg,#0891b2,#38bdf8); }
 
-        /* ==================== TOP BANNER ==================== */
-        .top-banner {
-            background: linear-gradient(135deg, var(--canadian-red) 0%, #b91c1c 100%);
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-        .top-banner-icon {
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-        .top-banner span {
-            color: #fff;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            letter-spacing: 0.01em;
-        }
-        .flag-bar { display: flex; height: 4px; }
-        .flag-bar .bar-red { background: var(--canadian-red); flex: 1; }
-        .flag-bar .bar-white { background: #fff; flex: 2; }
+.card-head-text { flex: 1; min-width: 0; padding-top: 0.125rem; }
+.card-title {
+  font-size: clamp(1.0625rem, 3vw, 1.375rem);
+  font-weight: 800;
+  color: var(--g900);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+.card-desc {
+  font-size: clamp(0.875rem, 2.2vw, 1rem);
+  color: var(--g500);
+  margin-top: 0.375rem;
+  line-height: 1.65;
+}
+.req { color: var(--red); font-weight: 800; }
 
-        /* ==================== PAGE ==================== */
-        .page-wrap {
-            max-width: 740px;
-            margin: 0 auto;
-            padding: 2.5rem 1.5rem 6rem;
-        }
+/* ── FORM ── */
+.field { margin-bottom: clamp(1.125rem, 3vw, 1.625rem); }
+.field:last-child { margin-bottom: 0; }
+.field > label {
+  display: block;
+  font-size: clamp(0.9375rem, 2.2vw, 1.0625rem);
+  font-weight: 700;
+  color: var(--g700);
+  margin-bottom: 0.5rem;
+}
 
-        /* ==================== HEADER ==================== */
-        .page-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            animation: fadeInDown 0.6s var(--ease) both;
-        }
-        .page-header-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 76px;
-            height: 76px;
-            background: linear-gradient(135deg, var(--primary-light), #e0e7ff);
-            border-radius: var(--radius-lg);
-            font-size: 2.25rem;
-            margin-bottom: 1.25rem;
-            box-shadow: 0 8px 24px var(--primary-glow);
-        }
-        .page-header h1 {
-            font-size: 2.125rem;
-            font-weight: 800;
-            color: var(--g950);
-            letter-spacing: -0.035em;
-            line-height: 1.2;
-            margin-bottom: 0.75rem;
-        }
-        .page-header p {
-            color: var(--g500);
-            font-size: 1.0625rem;
-            line-height: 1.7;
-            max-width: 540px;
-            margin: 0 auto;
-            font-weight: 400;
-        }
+input[type="date"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: clamp(0.8125rem, 2.5vw, 1rem) clamp(0.9375rem, 2.5vw, 1.1875rem);
+  border: 2px solid var(--g200);
+  border-radius: var(--radius-md);
+  font-size: clamp(1rem, 2.5vw, 1.0625rem);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--g800);
+  background: var(--g0);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: clamp(50px, 8vw, 58px);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2394a3b8' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  padding-right: 2.75rem;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-glow);
+}
+input.error { border-color: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,0.12); }
+input::placeholder { color: var(--g400); font-weight: 400; }
 
-        /* ==================== STEPPER ==================== */
-        .stepper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0;
-            margin-bottom: 2.5rem;
-            animation: fadeInDown 0.6s var(--ease) 0.1s both;
-            flex-wrap: wrap;
-        }
-        .step {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.625rem 0.75rem;
-            border-radius: var(--radius-xs);
-            transition: background var(--duration) var(--ease);
-        }
-        .step-num {
-            width: 36px;
-            height: 36px;
-            border-radius: var(--radius-full);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.875rem;
-            font-weight: 700;
-            background: var(--g100);
-            color: var(--g400);
-            transition: all 0.3s var(--ease);
-            flex-shrink: 0;
-            border: 2px solid transparent;
-        }
-        .step.active .step-num {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px var(--primary-shadow);
-        }
-        .step.completed .step-num {
-            background: var(--green);
-            color: #fff;
-            border-color: var(--green);
-            box-shadow: 0 4px 12px var(--green-shadow);
-        }
-        .step-label {
-            font-size: 0.9375rem;
-            font-weight: 600;
-            color: var(--g400);
-            transition: color var(--duration) var(--ease);
-        }
-        .step.active .step-label { color: var(--g900); }
-        .step.completed .step-label { color: var(--green-dark); }
-        .step-connector {
-            width: 28px;
-            height: 2.5px;
-            background: var(--g200);
-            border-radius: 2px;
-            transition: background 0.3s var(--ease);
-        }
-        .step-connector.done { background: var(--green); }
+.field-hint {
+  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  color: var(--g400);
+  margin-top: 0.4375rem;
+  line-height: 1.6;
+}
 
-        /* ==================== CARDS ==================== */
-        .card {
-            background: var(--g0);
-            border-radius: var(--radius-lg);
-            padding: 2.25rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--g200);
-            transition: box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
-            animation: fadeInUp 0.5s var(--ease) both;
-        }
-        .card:nth-child(2) { animation-delay: 0.05s; }
-        .card:nth-child(3) { animation-delay: 0.1s; }
-        .card:nth-child(4) { animation-delay: 0.15s; }
-        .card:nth-child(5) { animation-delay: 0.2s; }
-        .card:hover { box-shadow: var(--shadow-md); border-color: var(--g300); }
+/* Row: side by side on desktop, stacked on mobile */
+.row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.625rem, 2vw, 1rem);
+}
+@media (max-width: 480px) {
+  .row-2col { grid-template-columns: 1fr; }
+}
 
-        .card-head {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .card-letter {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            font-weight: 800;
-            flex-shrink: 0;
-            color: #fff;
-            letter-spacing: -0.02em;
-        }
-        .card-letter.a { background: linear-gradient(135deg, var(--primary), #6366f1); }
-        .card-letter.b { background: linear-gradient(135deg, var(--purple), #a78bfa); }
-        .card-letter.c { background: linear-gradient(135deg, var(--g600), var(--g500)); }
-        .card-letter.d { background: linear-gradient(135deg, var(--amber), #fbbf24); }
-        .card-letter.e { background: linear-gradient(135deg, #06b6d4, #22d3ee); }
+.row-input-btn {
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 0.875rem);
+  align-items: flex-end;
+}
+.row-input-btn .field-grow {
+  flex: 1;
+  min-width: 0;
+  margin-bottom: 0;
+}
 
-        .card-head-text { flex: 1; padding-top: 0.125rem; }
-        .card-title {
-            font-size: 1.1875rem;
-            font-weight: 700;
-            color: var(--g900);
-            line-height: 1.35;
-            letter-spacing: -0.01em;
-        }
-        .card-desc {
-            font-size: 0.9375rem;
-            color: var(--g500);
-            margin-top: 0.375rem;
-            line-height: 1.65;
-            font-weight: 400;
-        }
-        .req { color: var(--red); font-weight: 700; }
+/* ── RADIO ── */
+.radio-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.625rem, 2vw, 1rem);
+}
+.radio-option { position: relative; }
+.radio-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.radio-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: clamp(0.875rem, 2.5vw, 1rem) 1rem;
+  border: 2px solid var(--g200);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-weight: 700;
+  color: var(--g500);
+  background: var(--g0);
+  transition: all 0.2s var(--ease);
+  min-height: clamp(50px, 8vw, 58px);
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
+}
+.radio-label:active { transform: scale(0.98); }
+.radio-option input:checked + .radio-label {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+.radio-icon { font-size: 1.25rem; line-height: 1; }
 
-        /* ==================== FORM ==================== */
-        .field { margin-bottom: 1.5rem; }
-        .field:last-child { margin-bottom: 0; }
-        .field > label {
-            display: block;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            color: var(--g700);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.005em;
-        }
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4375rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: clamp(0.9375rem, 2.2vw, 1.0625rem);
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  white-space: nowrap;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  height: clamp(50px, 8vw, 58px);
+  padding: 0 clamp(1rem, 3vw, 1.625rem);
+}
+.btn:active { transform: scale(0.96); }
+.btn-primary { background: var(--primary); color: #fff; box-shadow: 0 2px 8px var(--primary-shadow); }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-secondary { background: var(--g0); color: var(--g700); border: 2px solid var(--g200); }
+.btn-secondary:hover { background: var(--g50); border-color: var(--g300); }
+.btn-icon { font-size: 1.125rem; line-height: 1; }
 
-        input[type="date"],
-        input[type="text"],
-        select {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            border: 1.5px solid var(--g200);
-            border-radius: var(--radius-sm);
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 450;
-            color: var(--g800);
-            background: var(--g0);
-            transition: all var(--duration) var(--ease);
-            appearance: none;
-            -webkit-appearance: none;
-            min-height: 52px;
-        }
-        select {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%239ca3af' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6l3.5 4 3.5-4'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            padding-right: 2.75rem;
-        }
-        input:hover, select:hover { border-color: var(--g300); }
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px var(--primary-glow);
-        }
-        input::placeholder { color: var(--g400); font-weight: 400; }
+/* ── CONDITIONAL ── */
+.conditional { display: none; }
+.conditional.visible { display: block; animation: fadeIn 0.3s var(--ease); }
 
-        .field-hint {
-            font-size: 0.875rem;
-            color: var(--g400);
-            margin-top: 0.5rem;
-            line-height: 1.55;
-        }
+/* ── INFO BOX ── */
+.info-box {
+  background: var(--blue-light);
+  border-left: 5px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: clamp(0.875rem, 2.5vw, 1.125rem) clamp(1rem, 3vw, 1.375rem);
+  font-size: clamp(0.9375rem, 2.2vw, 1rem);
+  color: var(--g700);
+  line-height: 1.75;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+}
+.info-box.warn { background: var(--amber-light); border-left-color: var(--amber); }
+.info-box.green { background: var(--green-light); border-left-color: var(--green); }
+.info-box strong { font-weight: 800; color: var(--g800); }
 
-        .row { display: flex; gap: 1rem; align-items: flex-end; }
-        .row > .field { flex: 1; margin-bottom: 0; }
+/* ── DAY RULE BOX ── */
+.day-rule-box {
+  background: var(--green-light);
+  border: 1.5px solid #bbf7d0;
+  border-radius: var(--radius-lg);
+  padding: clamp(1rem, 3.5vw, 1.5rem) clamp(1.125rem, 4vw, 1.75rem);
+  margin-bottom: clamp(1.25rem, 4vw, 2rem);
+  font-size: clamp(0.9375rem, 2.2vw, 1rem);
+  color: var(--green-dark);
+  line-height: 1.8;
+}
+.day-rule-box .rule-header {
+  display: flex; align-items: center;
+  gap: 0.625rem;
+  font-weight: 800;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  margin-bottom: 0.75rem;
+}
+.rule-icon { font-size: 1.375rem; line-height: 1; }
+.day-rule-box ul { margin: 0.375rem 0 0.375rem 1.5rem; }
+.day-rule-box li { margin-bottom: 0.4375rem; }
+.day-rule-box strong { font-weight: 800; }
 
-        /* ==================== RADIO ==================== */
-        .radio-group { display: flex; gap: 0.75rem; }
-        .radio-option { flex: 1; position: relative; }
-        .radio-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
-        .radio-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.25rem;
-            border: 1.5px solid var(--g200);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--g500);
-            background: var(--g0);
-            transition: all var(--duration) var(--ease);
-            min-height: 52px;
-        }
-        .radio-label:hover { border-color: var(--g300); background: var(--g50); }
-        .radio-option input:checked + .radio-label {
-            border-color: var(--primary);
-            background: var(--primary-light);
-            color: var(--primary);
-            box-shadow: 0 0 0 3px var(--primary-glow);
-        }
-        .radio-label .radio-icon { font-size: 1.25rem; line-height: 1; }
+/* ── TYPE PILLS ── */
+.type-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.4375rem, 1.5vw, 0.625rem);
+  margin-bottom: clamp(1.125rem, 3vw, 1.625rem);
+}
+.type-pill {
+  padding: 0.5rem clamp(0.875rem, 2.5vw, 1.25rem);
+  border: 2px solid var(--g200);
+  border-radius: var(--radius-full);
+  font-size: clamp(0.875rem, 2.2vw, 0.9375rem);
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--g0);
+  color: var(--g500);
+  transition: all 0.2s var(--ease);
+  font-family: 'Inter', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 42px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.type-pill:active { transform: scale(0.96); }
+.type-pill.active {
+  border-color: var(--purple);
+  background: var(--purple-light);
+  color: var(--purple);
+  box-shadow: 0 2px 10px rgba(124,58,237,0.18);
+}
+.pill-icon { font-size: 1rem; line-height: 1; }
 
-        /* ==================== BUTTONS ==================== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            height: 52px;
-            padding: 0 1.5rem;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-size: 0.9375rem;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all var(--duration) var(--ease);
-            white-space: nowrap;
-            flex-shrink: 0;
-            letter-spacing: -0.005em;
-        }
-        .btn:active { transform: scale(0.97); }
-        .btn-primary {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 1px 3px var(--primary-shadow), 0 1px 2px rgba(0,0,0,0.06);
-        }
-        .btn-primary:hover {
-            background: var(--primary-hover);
-            box-shadow: 0 4px 14px var(--primary-shadow);
-            transform: translateY(-1px);
-        }
-        .btn-primary:active { transform: scale(0.97) translateY(0); }
-        .btn-secondary {
-            background: var(--g0);
-            color: var(--g700);
-            border: 1.5px solid var(--g200);
-        }
-        .btn-secondary:hover { background: var(--g50); border-color: var(--g300); }
-        .btn-sm { height: 48px; font-size: 0.875rem; padding: 0 1.25rem; }
-        .btn .btn-icon { font-size: 1.25rem; line-height: 1; }
+/* ── LIST ITEMS ── */
+.list-area { margin-top: clamp(1rem, 3vw, 1.5rem); }
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: clamp(0.8125rem, 2.5vw, 1.125rem) clamp(0.875rem, 2.5vw, 1.25rem);
+  background: var(--g50);
+  border-radius: var(--radius-md);
+  margin-bottom: clamp(0.5rem, 1.5vw, 0.75rem);
+  gap: clamp(0.5rem, 2vw, 0.875rem);
+  border: 1.5px solid var(--g200);
+  transition: all 0.2s var(--ease);
+  animation: fadeInUp 0.25s var(--ease);
+}
+.item-dot {
+  width: 11px; height: 11px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+.item-dot.absence { background: var(--amber); }
+.item-dot.temp { background: var(--purple); }
+.item-dot.sentence { background: var(--g400); }
+.item-info { flex: 1; min-width: 0; }
+.item-name {
+  font-size: clamp(0.9375rem, 2.2vw, 1rem);
+  font-weight: 700; color: var(--g800);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.item-meta {
+  font-size: clamp(0.8125rem, 2vw, 0.875rem);
+  color: var(--g400); margin-top: 2px; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.item-badges {
+  display: flex;
+  gap: 0.375rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.item-badge {
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  background: var(--g100); color: var(--g500);
+}
+.item-badge.away { background: #fef3c7; color: var(--amber); }
+.item-badge.incan { background: #dcfce7; color: var(--green-dark); }
 
-        /* ==================== CONDITIONAL ==================== */
-        .conditional { display: none; animation: fadeIn 0.3s var(--ease); }
-        .conditional.visible { display: block; }
+.btn-remove {
+  background: none; border: none;
+  color: var(--g300);
+  cursor: pointer;
+  font-size: 1.375rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  border-radius: 8px;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.btn-remove:hover, .btn-remove:active { color: var(--red); background: var(--red-light); }
 
-        /* ==================== INFO BOX ==================== */
-        .info-box {
-            background: var(--blue-light);
-            border-left: 4px solid var(--blue);
-            border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
-            padding: 1rem 1.25rem;
-            font-size: 0.9375rem;
-            color: var(--g700);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        .info-box.warn { background: var(--amber-light); border-left-color: var(--amber); }
-        .info-box.green { background: var(--green-light); border-left-color: var(--green); }
-        .info-box strong { font-weight: 700; color: var(--g800); }
+.empty-state {
+  text-align: center;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  color: var(--g400);
+  font-size: clamp(0.9375rem, 2.2vw, 1rem);
+  font-weight: 500;
+  border: 2px dashed var(--g200);
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+}
 
-        /* ==================== DAY RULE BOX ==================== */
-        .day-rule-box {
-            background: linear-gradient(135deg, var(--green-light), #d1fae5);
-            border: 1px solid #a7f3d0;
-            border-radius: var(--radius-md);
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 1.75rem;
-            font-size: 0.9375rem;
-            color: var(--green-dark);
-            line-height: 1.75;
-        }
-        .day-rule-box .rule-header {
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .day-rule-box .rule-header .rule-icon { font-size: 1.375rem; line-height: 1; }
-        .day-rule-box ul { margin: 0.5rem 0 0.5rem 1.5rem; }
-        .day-rule-box li { margin-bottom: 0.375rem; padding-left: 0.25rem; }
-        .day-rule-box strong { font-weight: 700; }
+/* ── RESULT CARD ── */
+.result-card { overflow: hidden; position: relative; }
+.result-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--g200);
+  transition: background 0.6s var(--ease);
+}
+.result-card.pass-border::before { background: linear-gradient(90deg,#4ade80,var(--green)); }
+.result-card.fail-border::before { background: linear-gradient(90deg,#f87171,var(--red)); }
 
-        /* ==================== TYPE PILLS ==================== */
-        .type-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-        .type-pill {
-            padding: 0.5rem 1.125rem;
-            border: 1.5px solid var(--g200);
-            border-radius: var(--radius-full);
-            font-size: 0.9375rem;
-            font-weight: 600;
-            cursor: pointer;
-            background: var(--g0);
-            color: var(--g500);
-            transition: all var(--duration) var(--ease);
-            font-family: 'Inter', sans-serif;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-        }
-        .type-pill .pill-icon { font-size: 1.125rem; line-height: 1; }
-        .type-pill:hover { border-color: var(--g300); background: var(--g50); transform: translateY(-1px); }
-        .type-pill.active {
-            border-color: var(--purple);
-            background: var(--purple-light);
-            color: var(--purple);
-            box-shadow: 0 2px 8px rgba(139,92,246,0.15);
-        }
+.result-status {
+  text-align: center;
+  padding: clamp(1.25rem, 4vw, 2.25rem) 0 clamp(0.875rem, 3vw, 1.5rem);
+}
+.result-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: clamp(0.5rem, 1.5vw, 0.6875rem) clamp(1rem, 3vw, 1.75rem);
+  border-radius: var(--radius-full);
+  font-size: clamp(0.875rem, 2.2vw, 1.0625rem);
+  font-weight: 800;
+  animation: popIn 0.5s var(--ease);
+}
+.badge-icon { font-size: 1.25rem; line-height: 1; }
+.pass .result-badge { background: var(--green-light); color: var(--green-dark); }
+.fail .result-badge { background: var(--red-light); color: var(--red-dark); }
 
-        /* ==================== LIST ITEMS ==================== */
-        .list-area { margin-top: 1.5rem; }
-        .list-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.125rem;
-            background: var(--g50);
-            border-radius: var(--radius-sm);
-            margin-bottom: 0.625rem;
-            gap: 0.875rem;
-            border: 1px solid var(--g200);
-            transition: all var(--duration) var(--ease);
-            animation: fadeInUp 0.25s var(--ease);
-        }
-        .list-item:hover {
-            background: var(--g0);
-            border-color: var(--g300);
-            box-shadow: var(--shadow-sm);
-            transform: translateY(-1px);
-        }
-        .item-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: var(--radius-full);
-            flex-shrink: 0;
-        }
-        .item-dot.absence { background: var(--amber); box-shadow: 0 2px 6px rgba(245,158,11,0.3); }
-        .item-dot.temp { background: var(--purple); box-shadow: 0 2px 6px rgba(139,92,246,0.3); }
-        .item-dot.sentence { background: var(--g400); }
-        .item-info { flex: 1; min-width: 0; }
-        .item-name {
-            font-size: 0.9375rem;
-            font-weight: 600;
-            color: var(--g800);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .item-meta {
-            font-size: 0.8125rem;
-            color: var(--g400);
-            margin-top: 3px;
-            font-weight: 400;
-            line-height: 1.5;
-        }
-        .item-badges { display: flex; gap: 0.375rem; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
-        .item-badge {
-            font-size: 0.8125rem;
-            font-weight: 700;
-            white-space: nowrap;
-            padding: 0.25rem 0.75rem;
-            border-radius: var(--radius-full);
-            background: var(--g100);
-            color: var(--g500);
-            letter-spacing: 0.01em;
-        }
-        .item-badge.away { background: #fef3c7; color: var(--amber-dark); }
-        .item-badge.incan { background: #d1fae5; color: var(--green-dark); }
+.result-number {
+  font-size: clamp(3rem, 12vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+  margin-top: 0.625rem;
+  font-variant-numeric: tabular-nums;
+}
+.pass .result-number { color: var(--green); }
+.fail .result-number { color: var(--red); }
 
-        .btn-remove {
-            background: none;
-            border: none;
-            color: var(--g300);
-            cursor: pointer;
-            padding: 6px;
-            font-size: 1.375rem;
-            line-height: 1;
-            flex-shrink: 0;
-            transition: all var(--duration) var(--ease);
-            border-radius: var(--radius-xs);
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-remove:hover { color: var(--red); background: var(--red-light); }
+.result-subtitle {
+  font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
+  color: var(--g500); margin-top: 0.4375rem;
+  font-weight: 500; line-height: 1.6;
+}
+.result-subtitle strong { color: var(--g700); font-weight: 800; }
 
-        .empty-state {
-            text-align: center;
-            padding: 1.75rem;
-            color: var(--g300);
-            font-size: 0.9375rem;
-            font-weight: 400;
-        }
+.eligible-date {
+  text-align: center;
+  padding: clamp(0.875rem, 2.5vw, 1.25rem) clamp(1rem, 3vw, 1.625rem);
+  background: var(--amber-light);
+  border-radius: var(--radius-md);
+  margin-top: clamp(0.875rem, 2.5vw, 1.375rem);
+  font-size: clamp(0.9375rem, 2.2vw, 1rem);
+  color: var(--amber);
+  font-weight: 700;
+  border: 1.5px solid #fde68a;
+  line-height: 1.65;
+}
+.date-icon { font-size: 1.25rem; vertical-align: middle; margin-right: 0.25rem; }
 
-        /* ==================== RESULT ==================== */
-        .result-card { overflow: hidden; position: relative; }
-        .result-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 5px;
-            background: var(--g200);
-            transition: background 0.5s var(--ease);
-        }
-        .result-card.pass-border::before { background: linear-gradient(90deg, var(--green), #34d399); }
-        .result-card.fail-border::before { background: linear-gradient(90deg, var(--red), #f87171); }
+/* ── PROGRESS BAR ── */
+.progress-wrap { padding: clamp(0.875rem, 2.5vw, 1.375rem) 0 clamp(0.625rem, 2vw, 1rem); }
+.progress-labels {
+  display: flex; justify-content: space-between;
+  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  font-weight: 700; color: var(--g400);
+  margin-bottom: 0.5rem;
+}
+.progress-track {
+  height: clamp(14px, 2.5vw, 20px);
+  background: var(--g100);
+  border-radius: 100px;
+  position: relative; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; border-radius: 100px;
+  transition: width 1.4s cubic-bezier(0.22,1,0.36,1);
+  position: relative;
+}
+.pass .progress-fill { background: linear-gradient(90deg,#86efac,var(--green)); }
+.fail .progress-fill { background: linear-gradient(90deg,#fca5a5,var(--red)); }
+.progress-fill::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+.progress-marker {
+  position: absolute;
+  top: -4px; bottom: -4px;
+  width: 3px; background: var(--g700);
+  border-radius: 2px; z-index: 2;
+}
+.progress-marker::after {
+  content: '1,095';
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%; transform: translateX(-50%);
+  font-size: 0.75rem; font-weight: 800;
+  color: var(--g700); white-space: nowrap;
+  background: var(--g0);
+  padding: 0.125rem 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
 
-        .result-status { text-align: center; padding: 1.75rem 0 1.25rem; }
-        .result-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.375rem;
-            border-radius: var(--radius-full);
-            font-size: 0.9375rem;
-            font-weight: 700;
-            animation: popIn 0.5s var(--ease);
-        }
-        .result-badge .badge-icon { font-size: 1.25rem; line-height: 1; }
-        .pass .result-badge { background: var(--green-light); color: var(--green-dark); }
-        .fail .result-badge { background: var(--red-light); color: var(--red-dark); }
+/* ── BREAKDOWN ── */
+.breakdown {
+  border-top: 2px solid var(--g100);
+  padding-top: clamp(1.25rem, 4vw, 2rem);
+  margin-top: clamp(1.25rem, 4vw, 2rem);
+}
+.breakdown-title {
+  font-size: clamp(0.6875rem, 1.8vw, 0.8125rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--g400);
+  margin-bottom: clamp(0.75rem, 2.5vw, 1.125rem);
+}
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(0.5rem, 1.8vw, 0.75rem) clamp(0.5rem, 1.5vw, 0.75rem);
+  font-size: clamp(0.875rem, 2.2vw, 1rem);
+  transition: background 0.15s;
+  border-radius: var(--radius-sm);
+  margin: 0 clamp(-0.5rem, -1.5vw, -0.75rem);
+  gap: 0.5rem;
+}
+.breakdown-row:hover { background: var(--g50); }
+.breakdown-label {
+  color: var(--g600); display: flex; align-items: center;
+  gap: 0.5rem; font-weight: 500; line-height: 1.45;
+  flex: 1; min-width: 0;
+}
+.breakdown-label .dot {
+  width: 10px; height: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+.breakdown-value {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--g800);
+  flex-shrink: 0;
+  font-size: clamp(0.875rem, 2.2vw, 1rem);
+}
+.breakdown-row.total {
+  border-top: 2px solid var(--g200);
+  margin-top: clamp(0.5rem, 1.5vw, 0.875rem);
+  padding-top: clamp(0.875rem, 2.5vw, 1.25rem);
+}
+.breakdown-row.total:hover { background: transparent; }
+.breakdown-row.total .breakdown-label { color: var(--g900); font-weight: 800; font-size: clamp(0.9375rem, 2.5vw, 1.0625rem); }
+.breakdown-row.total .breakdown-value { color: var(--g900); font-size: clamp(1rem, 2.5vw, 1.1875rem); }
+.val-note { font-weight: 500; color: var(--g400); font-size: 0.875rem; }
+.breakdown-sub {
+  padding: 0 0 0.5rem clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(0.8125rem, 2vw, 0.875rem);
+  color: var(--g400); font-weight: 500;
+}
 
-        .result-number {
-            font-size: 4.5rem;
-            font-weight: 900;
-            letter-spacing: -0.05em;
-            line-height: 1.1;
-            margin-top: 0.5rem;
-            font-variant-numeric: tabular-nums;
-        }
-        .pass .result-number { color: var(--green); }
-        .fail .result-number { color: var(--red); }
+/* ── WARNING BOX ── */
+.warning-box {
+  margin-top: clamp(0.875rem, 2.5vw, 1.375rem);
+  padding: clamp(0.875rem, 2.5vw, 1.125rem) clamp(1rem, 3vw, 1.375rem);
+  border-radius: var(--radius-md);
+  font-size: clamp(0.875rem, 2.2vw, 1rem);
+  display: flex; align-items: flex-start;
+  gap: clamp(0.5rem, 2vw, 0.75rem);
+  line-height: 1.75; font-weight: 500;
+}
+.warn-icon { font-size: 1.25rem; line-height: 1; flex-shrink: 0; margin-top: 0.125rem; }
+.warning-box.amber { background: var(--amber-light); color: #92400e; border: 1.5px solid #fde68a; }
+.warning-box.blue { background: var(--blue-light); color: #1e3a8a; border: 1.5px solid #bfdbfe; }
+.warning-box strong { font-weight: 800; }
 
-        .result-subtitle {
-            font-size: 1.0625rem;
-            color: var(--g500);
-            margin-top: 0.375rem;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-        .result-subtitle strong { color: var(--g700); font-weight: 700; }
+/* ── PLACEHOLDER ── */
+.placeholder {
+  text-align: center;
+  padding: clamp(2.5rem, 7vw, 4.5rem) clamp(1rem, 4vw, 2rem);
+  color: var(--g300);
+}
+.placeholder-icon { font-size: clamp(2.5rem, 8vw, 4rem); display: block; margin-bottom: 1rem; opacity: 0.4; }
+.placeholder-text { font-size: clamp(0.9375rem, 2.2vw, 1.0625rem); font-weight: 500; line-height: 1.65; }
 
-        .eligible-date {
-            text-align: center;
-            padding: 1.125rem 1.5rem;
-            background: linear-gradient(135deg, var(--amber-light), #fef9c3);
-            border-radius: var(--radius-sm);
-            margin-top: 1.25rem;
-            font-size: 1rem;
-            color: var(--amber-dark);
-            font-weight: 600;
-            border: 1px solid #fde68a;
-            line-height: 1.6;
-        }
-        .eligible-date .date-icon { font-size: 1.375rem; vertical-align: middle; margin-right: 0.25rem; }
+/* ── SCROLL TOP ── */
+.scroll-top {
+  position: fixed;
+  bottom: clamp(1rem, 4vw, 1.75rem);
+  right: clamp(1rem, 4vw, 1.75rem);
+  width: 48px; height: 48px;
+  background: var(--primary);
+  color: #fff; border: none;
+  border-radius: var(--radius-full);
+  font-size: 1.375rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(16px);
+  transition: all 0.3s var(--ease);
+  pointer-events: none;
+  z-index: 50;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.scroll-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.scroll-top:active { transform: scale(0.92); }
 
-        /* ==================== PROGRESS ==================== */
-        .progress-wrap { padding: 1rem 0 0.5rem; }
-        .progress-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            color: var(--g400);
-            margin-bottom: 0.5rem;
-        }
-        .progress-track {
-            height: 16px;
-            background: var(--g100);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            border-radius: 8px;
-            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-            position: relative;
-        }
-        .pass .progress-fill { background: linear-gradient(90deg, #34d399, var(--green)); }
-        .fail .progress-fill { background: linear-gradient(90deg, #fca5a5, var(--red)); }
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
-            animation: shimmer 2.5s ease-in-out infinite;
-        }
-        .progress-marker {
-            position: absolute;
-            top: -6px; bottom: -6px;
-            width: 3px;
-            background: var(--g800);
-            border-radius: 2px;
-            z-index: 2;
-        }
-        .progress-marker::after {
-            content: '1,095';
-            position: absolute;
-            bottom: calc(100% + 6px);
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--g600);
-            white-space: nowrap;
-            background: var(--g0);
-            padding: 0.125rem 0.5rem;
-            border-radius: 6px;
-            box-shadow: var(--shadow-xs);
-        }
+/* ── ANIMATIONS ── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+  0% { transform: scale(0.75); opacity: 0; }
+  60% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-200%); }
+  50% { transform: translateX(200%); }
+}
 
-        /* ==================== BREAKDOWN ==================== */
-        .breakdown {
-            border-top: 1px solid var(--g200);
-            padding-top: 1.75rem;
-            margin-top: 1.75rem;
-        }
-        .breakdown-title {
-            font-size: 0.8125rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--g400);
-            margin-bottom: 1rem;
-        }
-        .breakdown-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.625rem 0.625rem;
-            font-size: 0.9375rem;
-            transition: background var(--duration) var(--ease);
-            border-radius: var(--radius-xs);
-            margin: 0 -0.625rem;
-        }
-        .breakdown-row:hover { background: var(--g50); }
-        .breakdown-label {
-            color: var(--g600);
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-            font-weight: 450;
-            line-height: 1.5;
-        }
-        .breakdown-label .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: var(--radius-full);
-            flex-shrink: 0;
-        }
-        .breakdown-value {
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-            text-align: right;
-            white-space: nowrap;
-            color: var(--g800);
-        }
-        .breakdown-row.total {
-            border-top: 2px solid var(--g200);
-            margin-top: 0.75rem;
-            padding-top: 1.125rem;
-            font-size: 1.0625rem;
-        }
-        .breakdown-row.total:hover { background: transparent; }
-        .breakdown-row.total .breakdown-label { color: var(--g900); font-weight: 700; }
-        .breakdown-row.total .breakdown-value { color: var(--g950); font-size: 1.1875rem; }
-        .val-note { font-weight: 400; color: var(--g400); font-size: 0.875rem; }
-        .breakdown-sub {
-            padding: 0 0 0.5rem 2.5rem;
-            font-size: 0.8125rem;
-            color: var(--g400);
-            font-weight: 400;
-            line-height: 1.5;
-        }
+/* ── TOUCH DEVICES ── */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover { transform: none; }
+  .card { transition: none; }
+}
 
-        /* ==================== WARNINGS ==================== */
-        .warning-box {
-            margin-top: 1.25rem;
-            padding: 1rem 1.25rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.9375rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            line-height: 1.7;
-            font-weight: 450;
-        }
-        .warning-box .warn-icon { font-size: 1.375rem; line-height: 1; flex-shrink: 0; margin-top: 0.125rem; }
-        .warning-box.amber { background: var(--amber-light); color: var(--amber-dark); border: 1px solid #fde68a; }
-        .warning-box.blue { background: var(--blue-light); color: #1e40af; border: 1px solid #bfdbfe; }
-        .warning-box strong { font-weight: 700; }
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
-        /* ==================== PLACEHOLDER ==================== */
-        .placeholder {
-            text-align: center;
-            padding: 3.5rem 1.5rem;
-            color: var(--g300);
-        }
-        .placeholder-icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; opacity: 0.35; }
-        .placeholder-text { font-size: 1rem; font-weight: 450; line-height: 1.6; }
+/* ── PRINT ── */
+@media print {
+  .top-banner, .stepper, .scroll-top, .btn-remove { display: none !important; }
+  .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+  body { font-size: 12px; }
+}
 
-        /* ==================== ANIMATIONS ==================== */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 60% { transform: scale(1.04); } 100% { transform: scale(1); opacity: 1; } }
-        @keyframes shimmer { 0%, 100% { transform: translateX(-150%); } 50% { transform: translateX(150%); } }
-
-        /* ==================== RESPONSIVE ==================== */
-        @media (max-width: 768px) {
-            .page-wrap { padding: 2rem 1.25rem 5rem; }
-            .card { padding: 1.75rem; }
-            .page-header h1 { font-size: 1.75rem; }
-            .page-header p { font-size: 1rem; }
-            .card-letter { width: 44px; height: 44px; font-size: 1.125rem; }
-            .card-title { font-size: 1.125rem; }
-            .result-number { font-size: 3.5rem; }
-        }
-
-        @media (max-width: 600px) {
-            .top-banner { padding: 0.625rem 1rem; }
-            .top-banner span { font-size: 0.8125rem; }
-            .page-wrap { padding: 1.5rem 1rem 4rem; }
-            .page-header { margin-bottom: 2rem; }
-            .page-header-icon { width: 64px; height: 64px; font-size: 1.875rem; }
-            .page-header h1 { font-size: 1.5rem; }
-            .page-header p { font-size: 0.9375rem; }
-
-            .stepper { margin-bottom: 1.75rem; gap: 0; }
-            .step { padding: 0.375rem 0.25rem; }
-            .step-num { width: 32px; height: 32px; font-size: 0.8125rem; }
-            .step-label { display: none; }
-            .step-connector { width: 12px; }
-
-            .card {
-                padding: 1.5rem;
-                margin-bottom: 1rem;
-                border-radius: var(--radius-md);
-            }
-            .card-head { gap: 0.875rem; margin-bottom: 1.5rem; }
-            .card-letter { width: 42px; height: 42px; font-size: 1.0625rem; border-radius: var(--radius-xs); }
-            .card-title { font-size: 1.0625rem; }
-            .card-desc { font-size: 0.875rem; }
-
-            .field { margin-bottom: 1.25rem; }
-            .field > label { font-size: 0.9375rem; margin-bottom: 0.4375rem; }
-            input[type="date"],
-            input[type="text"],
-            select {
-                font-size: 1rem;
-                padding: 0.8125rem 0.875rem;
-                min-height: 50px;
-            }
-            .field-hint { font-size: 0.8125rem; }
-
-            .row.stack-sm { flex-direction: column; gap: 0; }
-            .row.stack-sm > .field { margin-bottom: 1.25rem; }
-
-            .radio-group { gap: 0.625rem; }
-            .radio-label { padding: 0.8125rem 1rem; font-size: 0.9375rem; min-height: 50px; }
-
-            .btn { height: 50px; font-size: 0.9375rem; padding: 0 1.25rem; }
-            .btn-sm { height: 48px; }
-
-            .info-box { font-size: 0.875rem; padding: 0.875rem 1rem; }
-            .day-rule-box { padding: 1.125rem 1.25rem; font-size: 0.875rem; }
-            .day-rule-box .rule-header { font-size: 0.9375rem; }
-
-            .type-pills { gap: 0.375rem; }
-            .type-pill { font-size: 0.8125rem; padding: 0.4375rem 0.875rem; }
-            .type-pill .pill-icon { font-size: 1rem; }
-
-            .list-item { padding: 0.875rem; gap: 0.75rem; }
-            .item-name { font-size: 0.875rem; }
-            .item-meta { font-size: 0.8125rem; }
-            .item-badges { flex-direction: column; align-items: flex-end; gap: 0.25rem; }
-            .item-badge { font-size: 0.75rem; padding: 0.1875rem 0.625rem; }
-
-            .result-number { font-size: 3rem; }
-            .result-subtitle { font-size: 0.9375rem; }
-            .result-badge { font-size: 0.8125rem; padding: 0.4375rem 1rem; }
-
-            .progress-track { height: 14px; }
-
-            .breakdown-row { font-size: 0.875rem; padding: 0.5rem; }
-            .breakdown-row.total { font-size: 1rem; }
-            .breakdown-row.total .breakdown-value { font-size: 1.0625rem; }
-
-            .warning-box { font-size: 0.875rem; padding: 0.875rem 1rem; gap: 0.625rem; }
-            .warning-box .warn-icon { font-size: 1.25rem; }
-
-            .eligible-date { font-size: 0.9375rem; padding: 1rem 1.125rem; }
-        }
-
-        @media (max-width: 380px) {
-            .page-wrap { padding: 1.25rem 0.75rem 3.5rem; }
-            .card { padding: 1.25rem; }
-            .card-head { flex-direction: column; gap: 0.75rem; }
-            .radio-group { flex-direction: column; gap: 0.5rem; }
-            .type-pills { gap: 0.3rem; }
-            .type-pill { font-size: 0.75rem; padding: 0.375rem 0.75rem; }
-            .result-number { font-size: 2.5rem; }
-            .breakdown-label { font-size: 0.8125rem; }
-        }
-    </style>
+/* ── DARK MODE ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --g0: #1e293b; --g50: #0f172a; --g100: #1e293b;
+    --g200: #334155; --g300: #475569; --g400: #64748b;
+    --g500: #94a3b8; --g600: #cbd5e1; --g700: #e2e8f0;
+    --g800: #f1f5f9; --g900: #f8fafc;
+    --primary-light: #1e3a8a; --primary-glow: rgba(37,99,235,0.2);
+    --green-light: #14532d; --green-dark: #4ade80;
+    --red-light: #7f1d1d; --amber-light: #78350f;
+    --blue-light: #1e3a8a; --purple-light: #4c1d95;
+  }
+  body { background: #0f172a; }
+  input[type="date"], input[type="text"], select {
+    background: #1e293b; color: var(--g800);
+    border-color: var(--g200); color-scheme: dark;
+  }
+  .list-item { background: #0f172a; }
+  .empty-state { border-color: var(--g200); }
+  .warning-box.amber { color: #fde68a; }
+  .warning-box.blue { color: #bfdbfe; }
+  .eligible-date { color: #fbbf24; }
+}
+</style>
 </head>
 <body>
 
 <div class="top-banner">
-    <span class="top-banner-icon">🍁</span>
-    <span>Physical Presence Calculator — Canadian Citizenship</span>
+  <span class="top-banner-icon">🍁</span>
+  <span>Physical Presence Calculator — Canadian Citizenship</span>
 </div>
 <div class="flag-bar">
-    <div class="bar-red"></div>
-    <div class="bar-white"></div>
-    <div class="bar-red"></div>
+  <div class="bar-red"></div>
+  <div class="bar-white"></div>
+  <div class="bar-red"></div>
 </div>
 
 <div class="page-wrap">
 
-    <div class="page-header">
-        <div class="page-header-icon">🇨🇦</div>
-        <h1>Physical Presence Calculator</h1>
-        <p>Calculate if you meet the 1,095-day physical presence requirement for Canadian citizenship under subsection 5(1).</p>
+  <!-- HEADER -->
+  <div class="page-header">
+    <span class="page-header-emoji">🍁</span>
+    <h1>Physical Presence Calculator</h1>
+    <p>Find out if you meet the <strong>1,095 day</strong> requirement for Canadian citizenship.</p>
+  </div>
+
+  <!-- STEPPER — responsive, never crops -->
+  <div class="stepper" id="stepper">
+    <div class="step active" data-step="1">
+      <div class="step-num">A</div>
+      <div class="step-label">Dates</div>
+    </div>
+    <div class="step-connector" id="conn1"></div>
+    <div class="step" data-step="2">
+      <div class="step-num">B</div>
+      <div class="step-label">Temp</div>
+    </div>
+    <div class="step-connector" id="conn2"></div>
+    <div class="step" data-step="3">
+      <div class="step-num">C</div>
+      <div class="step-label">Sentence</div>
+    </div>
+    <div class="step-connector" id="conn3"></div>
+    <div class="step" data-step="4">
+      <div class="step-num">D</div>
+      <div class="step-label">Absences</div>
+    </div>
+    <div class="step-connector" id="conn4"></div>
+    <div class="step" data-step="5">
+      <div class="step-num">E</div>
+      <div class="step-label">Result</div>
+    </div>
+  </div>
+
+  <!-- CARD A -->
+  <div class="card" id="sectionA">
+    <div class="card-head">
+      <div class="card-icon a">A</div>
+      <div class="card-head-text">
+        <div class="card-title">Application &amp; PR Dates <span class="req">*</span></div>
+        <div class="card-desc">Enter the date you will sign your application and the date you became a permanent resident.</div>
+      </div>
     </div>
 
-    <div class="stepper" id="stepper">
-        <div class="step active" data-step="1"><div class="step-num">A</div><div class="step-label">Dates</div></div>
-        <div class="step-connector"></div>
-        <div class="step" data-step="2"><div class="step-num">B</div><div class="step-label">Temp Status</div></div>
-        <div class="step-connector"></div>
-        <div class="step" data-step="3"><div class="step-num">C</div><div class="step-label">Sentence</div></div>
-        <div class="step-connector"></div>
-        <div class="step" data-step="4"><div class="step-num">D</div><div class="step-label">Absences</div></div>
-        <div class="step-connector"></div>
-        <div class="step" data-step="5"><div class="step-num">E</div><div class="step-label">Result</div></div>
+    <div class="field">
+      <label for="appDate">Application signing date <span class="req">*</span></label>
+      <div class="row-input-btn">
+        <div class="field-grow">
+          <input type="date" id="appDate" autocomplete="off">
+        </div>
+        <button class="btn btn-secondary" id="todayBtn" type="button" style="height:clamp(50px,8vw,58px);">
+          <span class="btn-icon">📅</span> Today
+        </button>
+      </div>
+      <div class="field-hint">If unsure, enter today's date to check eligibility.</div>
     </div>
 
-    <!-- A -->
-    <div class="card" id="sectionA">
-        <div class="card-head">
-            <div class="card-letter a">A</div>
-            <div class="card-head-text">
-                <div class="card-title">Application & PR Dates <span class="req">*</span></div>
-                <div class="card-desc">Enter the date you will sign your application and the date you became a permanent resident.</div>
-            </div>
-        </div>
-        <div class="field">
-            <label for="appDate">Application signing date <span class="req">*</span></label>
-            <div class="row">
-                <div class="field"><input type="date" id="appDate"></div>
-                <button class="btn btn-secondary btn-sm" id="todayBtn" type="button"><span class="btn-icon">📍</span> Today</button>
-            </div>
-            <div class="field-hint">If unsure, enter today's date to check eligibility.</div>
-        </div>
-        <div class="field">
-            <label for="prDate">Permanent residence date <span class="req">*</span></label>
-            <input type="date" id="prDate">
-            <div class="field-hint">See Box 45/46 on your IMM 1000, IMM 5292, IMM 5509, or back of your PR Card.</div>
-        </div>
-        <div class="info-box" id="windowInfo" style="display:none;margin-top:0.75rem;">
-            <strong>📅 5-year window:</strong> <span id="windowText"></span>
-        </div>
+    <div class="field">
+      <label for="prDate">Permanent residence date <span class="req">*</span></label>
+      <input type="date" id="prDate" autocomplete="off">
+      <div class="field-hint">See Box 45/46 on your IMM 1000, IMM 5292, IMM 5509, or back of your PR Card.</div>
     </div>
 
-    <!-- B -->
-    <div class="card" id="sectionB">
-        <div class="card-head">
-            <div class="card-letter b">B</div>
-            <div class="card-head-text">
-                <div class="card-title">Temporary Resident / Protected Person Status</div>
-                <div class="card-desc">Did you have Canadian temporary resident status or were you a protected person within the 5-year window before becoming a PR?</div>
-            </div>
-        </div>
-        <div class="field">
-            <label>Held temporary status before becoming a PR? <span class="req">*</span></label>
-            <div class="radio-group">
-                <div class="radio-option">
-                    <input type="radio" name="hadTemp" id="hadTempYes" value="yes">
-                    <label class="radio-label" for="hadTempYes"><span class="radio-icon">✅</span> Yes</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="hadTemp" id="hadTempNo" value="no" checked>
-                    <label class="radio-label" for="hadTempNo"><span class="radio-icon">❌</span> No</label>
-                </div>
-            </div>
-        </div>
-        <div class="conditional" id="tempSection">
-            <div class="info-box" style="margin-top:1.5rem;">
-                Each day physically present in Canada as a temporary resident or protected person <strong>before PR</strong> counts as <strong>½ day</strong>, up to a maximum credit of <strong>365 days</strong>.
-            </div>
-            <div class="info-box warn">
-                <strong>⚠️ Important:</strong> Work/study permits held while a refugee claim or PRRA was being assessed do <strong>not</strong> grant temporary resident status. Only time after a positive Protected Person decision counts.
-            </div>
-            <div class="type-pills" id="typePills">
-                <button class="type-pill active" data-type="student"><span class="pill-icon">🎓</span> Student</button>
-                <button class="type-pill" data-type="worker"><span class="pill-icon">💼</span> Worker</button>
-                <button class="type-pill" data-type="visitor"><span class="pill-icon">🧳</span> Visitor</button>
-                <button class="type-pill" data-type="trp"><span class="pill-icon">📄</span> TRP Holder</button>
-                <button class="type-pill" data-type="protected"><span class="pill-icon">🛡️</span> Protected Person</button>
-            </div>
-            <div class="row stack-sm">
-                <div class="field"><label for="tempStart">Start date</label><input type="date" id="tempStart"></div>
-                <div class="field"><label for="tempEnd">End date</label><input type="date" id="tempEnd"></div>
-            </div>
-            <div class="row" style="margin-top:1rem;">
-                <div class="field"><input type="text" id="tempLabel" placeholder="Label (optional)"></div>
-                <button class="btn btn-primary btn-sm" id="addTempBtn" type="button"><span class="btn-icon">➕</span> Add</button>
-            </div>
-            <div id="tempList"></div>
-        </div>
+    <div class="info-box" id="windowInfo" style="display:none;margin-bottom:0;">
+      <strong>🍁 5-year window:</strong> <span id="windowText"></span>
     </div>
+  </div>
 
-    <!-- C -->
-    <div class="card" id="sectionC">
-        <div class="card-head">
-            <div class="card-letter c">C</div>
-            <div class="card-head-text">
-                <div class="card-title">Time Serving a Sentence</div>
-                <div class="card-desc">Did you spend time serving a sentence for an offence in Canada (imprisonment, conditional sentence, probation, parole)?</div>
-            </div>
-        </div>
-        <div class="field">
-            <label>Served a sentence in Canada during the 5-year window? <span class="req">*</span></label>
-            <div class="radio-group">
-                <div class="radio-option">
-                    <input type="radio" name="hadSentence" id="hadSentenceYes" value="yes">
-                    <label class="radio-label" for="hadSentenceYes"><span class="radio-icon">✅</span> Yes</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" name="hadSentence" id="hadSentenceNo" value="no" checked>
-                    <label class="radio-label" for="hadSentenceNo"><span class="radio-icon">❌</span> No</label>
-                </div>
-            </div>
-        </div>
-        <div class="conditional" id="sentenceSection">
-            <div class="info-box warn" style="margin-top:1.5rem;">
-                <strong>⚠️</strong> Time spent serving a sentence <strong>cannot</strong> be counted towards physical presence.
-            </div>
-            <div class="row stack-sm">
-                <div class="field"><label for="senStart">Start date</label><input type="date" id="senStart"></div>
-                <div class="field"><label for="senEnd">End date</label><input type="date" id="senEnd"></div>
-            </div>
-            <div class="row" style="margin-top:1rem;">
-                <div class="field"><input type="text" id="senLabel" placeholder="Description (optional)"></div>
-                <button class="btn btn-primary btn-sm" id="addSenBtn" type="button"><span class="btn-icon">➕</span> Add</button>
-            </div>
-            <div id="senList"></div>
-        </div>
+  <!-- CARD B -->
+  <div class="card" id="sectionB">
+    <div class="card-head">
+      <div class="card-icon b">B</div>
+      <div class="card-head-text">
+        <div class="card-title">Temporary Resident / Protected Person Status</div>
+        <div class="card-desc">Did you have Canadian temporary resident status or were you a protected person within the 5-year window before becoming a PR?</div>
+      </div>
     </div>
+    <div class="field">
+      <label>Held temporary status before becoming a PR? <span class="req">*</span></label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="hadTemp" id="hadTempYes" value="yes">
+          <label class="radio-label" for="hadTempYes"><span class="radio-icon">✅</span> Yes</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="hadTemp" id="hadTempNo" value="no" checked>
+          <label class="radio-label" for="hadTempNo"><span class="radio-icon">❌</span> No</label>
+        </div>
+      </div>
+    </div>
+    <div class="conditional" id="tempSection">
+      <div class="info-box" style="margin-top:1.25rem;">
+        Each day physically present in Canada as a temporary resident or protected person <strong>before PR</strong> counts as <strong>½ day</strong>, up to a maximum credit of <strong>365 days</strong>.
+      </div>
+      <div class="info-box warn">
+        <strong>⚠️ Important:</strong> Work/study permits held while a refugee claim or PRRA was being assessed do <strong>not</strong> grant temporary resident status. Only time after a positive Protected Person decision counts.
+      </div>
+      <div class="type-pills" id="typePills">
+        <button class="type-pill active" data-type="student"><span class="pill-icon">🎓</span> Student</button>
+        <button class="type-pill" data-type="worker"><span class="pill-icon">💼</span> Worker</button>
+        <button class="type-pill" data-type="visitor"><span class="pill-icon">🧳</span> Visitor</button>
+        <button class="type-pill" data-type="trp"><span class="pill-icon">📋</span> TRP</button>
+        <button class="type-pill" data-type="protected"><span class="pill-icon">🛡️</span> Protected</button>
+      </div>
+      <div class="row-2col">
+        <div class="field"><label for="tempStart">Start date</label><input type="date" id="tempStart" autocomplete="off"></div>
+        <div class="field"><label for="tempEnd">End date</label><input type="date" id="tempEnd" autocomplete="off"></div>
+      </div>
+      <div class="row-input-btn" style="margin-top:0.875rem;">
+        <div class="field-grow">
+          <input type="text" id="tempLabel" placeholder="Label (optional)" autocomplete="off">
+        </div>
+        <button class="btn btn-primary" id="addTempBtn" type="button">＋ Add</button>
+      </div>
+      <div id="tempList"></div>
+    </div>
+  </div>
 
-    <!-- D -->
-    <div class="card" id="sectionD">
-        <div class="card-head">
-            <div class="card-letter d">D</div>
-            <div class="card-head-text">
-                <div class="card-title">Absences from Canada</div>
-                <div class="card-desc">List all time spent outside Canada in the 5-year window, including work travel and vacations.</div>
-            </div>
-        </div>
-        <div class="day-rule-box">
-            <div class="rule-header"><span class="rule-icon">📋</span> How days are counted</div>
-            <ul>
-                <li>Any part of a day physically in Canada counts as <strong>1 full day</strong>.</li>
-                <li>The <strong>day you leave</strong> Canada counts as a day <strong>in</strong> Canada.</li>
-                <li>The <strong>day you return</strong> to Canada also counts as a day <strong>in</strong> Canada.</li>
-            </ul>
-            Only the <strong>full days between departure and return</strong> (exclusive of both) are counted as absent.
-        </div>
-        <div class="row stack-sm">
-            <div class="field"><label for="absStart">Departure date</label><input type="date" id="absStart"></div>
-            <div class="field"><label for="absEnd">Return date</label><input type="date" id="absEnd"></div>
-        </div>
-        <div class="row" style="margin-top:1rem;">
-            <div class="field"><input type="text" id="absReason" placeholder="Destination / reason (optional)"></div>
-            <button class="btn btn-primary btn-sm" id="addAbsBtn" type="button"><span class="btn-icon">✈️</span> Add Trip</button>
-        </div>
-        <div id="absList"></div>
+  <!-- CARD C -->
+  <div class="card" id="sectionC">
+    <div class="card-head">
+      <div class="card-icon c">C</div>
+      <div class="card-head-text">
+        <div class="card-title">Time Serving a Sentence</div>
+        <div class="card-desc">Did you spend time serving a sentence for an offence in Canada (imprisonment, conditional sentence, probation, parole)?</div>
+      </div>
     </div>
+    <div class="field">
+      <label>Served a sentence in Canada during the 5-year window? <span class="req">*</span></label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="hadSentence" id="hadSentenceYes" value="yes">
+          <label class="radio-label" for="hadSentenceYes"><span class="radio-icon">✅</span> Yes</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="hadSentence" id="hadSentenceNo" value="no" checked>
+          <label class="radio-label" for="hadSentenceNo"><span class="radio-icon">❌</span> No</label>
+        </div>
+      </div>
+    </div>
+    <div class="conditional" id="sentenceSection">
+      <div class="info-box warn" style="margin-top:1.25rem;">
+        <strong>⚠️</strong> Time spent serving a sentence <strong>cannot</strong> be counted towards physical presence.
+      </div>
+      <div class="row-2col">
+        <div class="field"><label for="senStart">Start date</label><input type="date" id="senStart" autocomplete="off"></div>
+        <div class="field"><label for="senEnd">End date</label><input type="date" id="senEnd" autocomplete="off"></div>
+      </div>
+      <div class="row-input-btn" style="margin-top:0.875rem;">
+        <div class="field-grow">
+          <input type="text" id="senLabel" placeholder="Description (optional)" autocomplete="off">
+        </div>
+        <button class="btn btn-primary" id="addSenBtn" type="button">＋ Add</button>
+      </div>
+      <div id="senList"></div>
+    </div>
+  </div>
 
-    <!-- E -->
-    <div class="card result-card" id="sectionE">
-        <div class="card-head">
-            <div class="card-letter" id="resultLetterIcon" style="background:linear-gradient(135deg, var(--g400), var(--g300));">E</div>
-            <div class="card-head-text">
-                <div class="card-title">Calculation Result</div>
-                <div class="card-desc">Based on the information you provided above.</div>
-            </div>
-        </div>
-        <div id="resultArea">
-            <div class="placeholder">
-                <span class="placeholder-icon">📊</span>
-                <span class="placeholder-text">Enter your dates above to see your result.</span>
-            </div>
-        </div>
+  <!-- CARD D -->
+  <div class="card" id="sectionD">
+    <div class="card-head">
+      <div class="card-icon d">D</div>
+      <div class="card-head-text">
+        <div class="card-title">Absences from Canada</div>
+        <div class="card-desc">List all time spent outside Canada in the 5-year window, including work travel and vacations.</div>
+      </div>
     </div>
-</div>
+    <div class="day-rule-box">
+      <div class="rule-header"><span class="rule-icon">📌</span> How days are counted</div>
+      <ul>
+        <li>Any part of a day physically in Canada = <strong>1 full day</strong>.</li>
+        <li>The <strong>day you leave</strong> counts as a day <strong>in</strong> Canada.</li>
+        <li>The <strong>day you return</strong> also counts as a day <strong>in</strong> Canada.</li>
+      </ul>
+      Only <strong>full days between departure and return</strong> (exclusive of both) are absent days.
+    </div>
+    <div class="row-2col">
+      <div class="field"><label for="absStart">Departure date</label><input type="date" id="absStart" autocomplete="off"></div>
+      <div class="field"><label for="absEnd">Return date</label><input type="date" id="absEnd" autocomplete="off"></div>
+    </div>
+    <div class="row-input-btn" style="margin-top:0.875rem;">
+      <div class="field-grow">
+        <input type="text" id="absReason" placeholder="Destination / reason (optional)" autocomplete="off">
+      </div>
+      <button class="btn btn-primary" id="addAbsBtn" type="button">✈️ Add</button>
+    </div>
+    <div id="absList"></div>
+  </div>
+
+  <!-- CARD E -->
+  <div class="card result-card" id="sectionE">
+    <div class="card-head">
+      <div class="card-icon" id="resultLetterIcon" style="background:linear-gradient(135deg,#94a3b8,#cbd5e1);">E</div>
+      <div class="card-head-text">
+        <div class="card-title">Calculation Result</div>
+        <div class="card-desc">Based on the information you provided above.</div>
+      </div>
+    </div>
+    <div id="resultArea">
+      <div class="placeholder">
+        <span class="placeholder-icon">🍁</span>
+        <span class="placeholder-text">Enter your PR and application dates above to see your result.</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
 
 <script>
-(function () {
-    var absences = [], tempPeriods = [], sentences = [];
-    var nextId = 0;
-    var selectedTempType = 'student';
-    var typeLabels = { student:'Student', worker:'Worker', visitor:'Visitor', trp:'TRP Holder', protected:'Protected Person' };
-    var typeEmojis = { student:'🎓', worker:'💼', visitor:'🧳', trp:'📄', protected:'🛡️' };
+(function(){
+'use strict';
 
-    function el(id) { return document.getElementById(id); }
-    function qsa(sel) { return document.querySelectorAll(sel); }
-    function parseDate(s) { if (!s) return null; var p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
-    function daysBetween(a, b) { return Math.round((b.getTime() - a.getTime()) / 864e5); }
-    function fmtDate(d) { var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return m[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(); }
-    function fmtN(n) { return Number.isInteger(n) ? n.toLocaleString('en-US') : n.toLocaleString('en-US',{maximumFractionDigits:1}); }
-    function todayStr() { var d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-    function esc(s) { var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
-    function clamp(v,lo,hi) { return Math.min(Math.max(v,lo),hi); }
-    function addDays(d,n) { var r=new Date(d); r.setDate(r.getDate()+n); return r; }
+var absences=[],tempPeriods=[],sentences=[];
+var nextId=0;
+var selectedTempType='student';
+var typeLabels={student:'Student',worker:'Worker',visitor:'Visitor',trp:'TRP Holder',protected:'Protected Person'};
+var typeEmojis={student:'🎓',worker:'💼',visitor:'🧳',trp:'📋',protected:'🛡️'};
 
-    function absentDaysForTrip(departDate, returnDate) {
-        var span = daysBetween(departDate, returnDate);
-        return Math.max(0, span - 1);
+function el(id){return document.getElementById(id);}
+function qsa(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
+function parseDate(s){if(!s)return null;var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+function daysBetween(a,b){return Math.round((b.getTime()-a.getTime())/864e5);}
+function fmtDate(d){var m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return m[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();}
+function fmtN(n){return Number.isInteger(n)?n.toLocaleString('en-US'):n.toLocaleString('en-US',{maximumFractionDigits:1});}
+function todayStr(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+function clamp(v,lo,hi){return Math.min(Math.max(v,lo),hi);}
+function addDays(d,n){var r=new Date(d);r.setDate(r.getDate()+n);return r;}
+
+function absentDaysForTrip(dept,ret){return Math.max(0,daysBetween(dept,ret)-1);}
+function absentDaysInPeriod(dTs,rTs,pS,pE){
+  var aS=dTs+864e5,aE=rTs;
+  if(aE<=aS)return 0;
+  var s=Math.max(aS,pS),e=Math.min(aE,pE);
+  return e>s?Math.round((e-s)/864e5):0;
+}
+function inclusiveOverlap(aS,aEI,pS,pE){
+  var aE=aEI+864e5,s=Math.max(aS,pS),e=Math.min(aE,pE);
+  return e>s?Math.round((e-s)/864e5):0;
+}
+
+/* Scroll top */
+var stBtn=el('scrollTopBtn');
+window.addEventListener('scroll',function(){
+  stBtn.classList.toggle('visible',window.pageYOffset>350);
+},{passive:true});
+stBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+/* Today button */
+el('todayBtn').onclick=function(){el('appDate').value=todayStr();onDatesChange();};
+el('appDate').addEventListener('change',onDatesChange);
+el('prDate').addEventListener('change',onDatesChange);
+
+function onDatesChange(){
+  var aS=el('appDate').value,pS=el('prDate').value;
+  if(aS&&pS){
+    var app=parseDate(aS),pr=parseDate(pS);
+    if(app>pr){
+      var ws=new Date(app.getFullYear()-5,app.getMonth(),app.getDate());
+      el('windowInfo').style.display='block';
+      el('windowText').textContent=fmtDate(ws)+' to '+fmtDate(app);
+    }else{el('windowInfo').style.display='none';}
+  }else{el('windowInfo').style.display='none';}
+  updateStepper();calculate();
+}
+
+function updateStepper(){
+  var steps=qsa('.step');
+  var conns=qsa('.step-connector');
+  var ok=!!(el('appDate').value&&el('prDate').value);
+  steps[0].className='step '+(ok?'completed':'active');
+  conns[0].className='step-connector'+(ok?' done':'');
+  for(var i=1;i<=3;i++){
+    steps[i].className='step '+(ok?'completed':'');
+    conns[i].className='step-connector'+(ok?' done':'');
+  }
+  var ready=ok&&parseDate(el('appDate').value)>parseDate(el('prDate').value);
+  steps[4].className='step '+(ready?'active':'');
+}
+
+/* Radios */
+qsa('input[name="hadTemp"]').forEach(function(r){
+  r.addEventListener('change',function(){
+    el('tempSection').classList.toggle('visible',this.value==='yes');
+    calculate();
+  });
+});
+qsa('input[name="hadSentence"]').forEach(function(r){
+  r.addEventListener('change',function(){
+    el('sentenceSection').classList.toggle('visible',this.value==='yes');
+    calculate();
+  });
+});
+
+/* Type pills */
+qsa('.type-pill').forEach(function(pill){
+  pill.addEventListener('click',function(){
+    qsa('.type-pill').forEach(function(p){p.classList.remove('active');});
+    pill.classList.add('active');
+    selectedTempType=pill.getAttribute('data-type');
+  });
+});
+
+/* ── TEMP ── */
+function addTemp(){
+  var s=el('tempStart').value,e=el('tempEnd').value;
+  if(!s||!e){highlight(el('tempStart'));return;}
+  if(parseDate(e)<parseDate(s)){var t=s;s=e;e=t;}
+  tempPeriods.push({id:nextId++,start:s,end:e,type:selectedTempType,label:el('tempLabel').value.trim()});
+  el('tempStart').value='';el('tempEnd').value='';el('tempLabel').value='';
+  renderTemp();calculate();
+}
+el('addTempBtn').onclick=addTemp;
+['tempStart','tempEnd','tempLabel'].forEach(function(id){
+  el(id).addEventListener('keydown',function(ev){if(ev.key==='Enter'){ev.preventDefault();addTemp();}});
+});
+window._removeTemp=function(id){tempPeriods=tempPeriods.filter(function(t){return t.id!==id;});renderTemp();calculate();};
+function renderTemp(){
+  var c=el('tempList');
+  if(!tempPeriods.length){c.innerHTML='<div class="list-area"><div class="empty-state">📭 No temporary status periods added yet.</div></div>';return;}
+  var h='<div class="list-area">';
+  tempPeriods.forEach(function(t){
+    var d=daysBetween(parseDate(t.start),parseDate(t.end))+1;
+    var lbl=t.label||typeLabels[t.type]+' period';
+    h+='<div class="list-item"><div class="item-dot temp"></div><div class="item-info"><div class="item-name">'+esc(lbl)+'</div><div class="item-meta">'+typeEmojis[t.type]+' '+typeLabels[t.type]+' · '+fmtDate(parseDate(t.start))+' – '+fmtDate(parseDate(t.end))+'</div></div><div class="item-badge">'+d+'d</div><button class="btn-remove" onclick="_removeTemp('+t.id+')" aria-label="Remove">×</button></div>';
+  });
+  c.innerHTML=h+'</div>';
+}
+
+/* ── SENTENCES ── */
+function addSen(){
+  var s=el('senStart').value,e=el('senEnd').value;
+  if(!s||!e){highlight(el('senStart'));return;}
+  if(parseDate(e)<parseDate(s)){var t=s;s=e;e=t;}
+  sentences.push({id:nextId++,start:s,end:e,label:el('senLabel').value.trim()});
+  el('senStart').value='';el('senEnd').value='';el('senLabel').value='';
+  renderSen();calculate();
+}
+el('addSenBtn').onclick=addSen;
+['senStart','senEnd','senLabel'].forEach(function(id){
+  el(id).addEventListener('keydown',function(ev){if(ev.key==='Enter'){ev.preventDefault();addSen();}});
+});
+window._removeSen=function(id){sentences=sentences.filter(function(s){return s.id!==id;});renderSen();calculate();};
+function renderSen(){
+  var c=el('senList');
+  if(!sentences.length){c.innerHTML='<div class="list-area"><div class="empty-state">📭 No sentence periods added yet.</div></div>';return;}
+  var h='<div class="list-area">';
+  sentences.forEach(function(s){
+    var d=daysBetween(parseDate(s.start),parseDate(s.end))+1;
+    h+='<div class="list-item"><div class="item-dot sentence"></div><div class="item-info"><div class="item-name">'+esc(s.label||'Sentence period')+'</div><div class="item-meta">'+fmtDate(parseDate(s.start))+' – '+fmtDate(parseDate(s.end))+'</div></div><div class="item-badge">'+d+'d</div><button class="btn-remove" onclick="_removeSen('+s.id+')" aria-label="Remove">×</button></div>';
+  });
+  c.innerHTML=h+'</div>';
+}
+
+/* ── ABSENCES ── */
+function addAbs(){
+  var s=el('absStart').value,e=el('absEnd').value;
+  if(!s||!e){highlight(el('absStart'));return;}
+  if(parseDate(e)<parseDate(s)){var t=s;s=e;e=t;}
+  absences.push({id:nextId++,start:s,end:e,reason:el('absReason').value.trim()});
+  el('absStart').value='';el('absEnd').value='';el('absReason').value='';
+  renderAbs();calculate();
+}
+el('addAbsBtn').onclick=addAbs;
+['absStart','absEnd','absReason'].forEach(function(id){
+  el(id).addEventListener('keydown',function(ev){if(ev.key==='Enter'){ev.preventDefault();addAbs();}});
+});
+window._removeAbs=function(id){absences=absences.filter(function(a){return a.id!==id;});renderAbs();calculate();};
+function renderAbs(){
+  var c=el('absList');
+  if(!absences.length){c.innerHTML='<div class="list-area"><div class="empty-state">✈️ No absences recorded yet.</div></div>';return;}
+  var h='<div class="list-area">';
+  absences.forEach(function(a){
+    var dept=parseDate(a.start),ret=parseDate(a.end);
+    var total=daysBetween(dept,ret)+1;
+    var absent=absentDaysForTrip(dept,ret);
+    var inCan=total-absent;
+    h+='<div class="list-item"><div class="item-dot absence"></div><div class="item-info"><div class="item-name">'+esc(a.reason||'Trip abroad')+'</div><div class="item-meta">✈️ '+fmtDate(dept)+' – '+fmtDate(ret)+' ('+total+'d)</div></div><div class="item-badges"><div class="item-badge away">'+absent+'d out</div><div class="item-badge incan">'+inCan+'d 🍁</div></div><button class="btn-remove" onclick="_removeAbs('+a.id+')" aria-label="Remove">×</button></div>';
+  });
+  c.innerHTML=h+'</div>';
+}
+
+/* Validation highlight */
+function highlight(inp){
+  inp.style.borderColor='var(--red)';
+  inp.style.boxShadow='0 0 0 3px rgba(220,38,38,0.12)';
+  inp.focus();
+  setTimeout(function(){inp.style.borderColor='';inp.style.boxShadow='';},2200);
+}
+
+/* ── CALCULATE ── */
+function calculate(){
+  var aS=el('appDate').value,pS=el('prDate').value;
+  var out=el('resultArea'),rc=el('sectionE'),rli=el('resultLetterIcon');
+  if(!aS||!pS){
+    out.innerHTML='<div class="placeholder"><span class="placeholder-icon">🍁</span><span class="placeholder-text">Enter your PR and application dates above to see your result.</span></div>';
+    rc.className='card result-card';rli.style.background='linear-gradient(135deg,#94a3b8,#cbd5e1)';
+    return;
+  }
+  var appDate=parseDate(aS),prDate=parseDate(pS);
+  if(appDate<=prDate){
+    out.innerHTML='<div class="placeholder"><span class="placeholder-icon">⚠️</span><span class="placeholder-text">Application date must be <strong>after</strong> your PR date.</span></div>';
+    rc.className='card result-card';return;
+  }
+
+  var windowStart=new Date(appDate.getFullYear()-5,appDate.getMonth(),appDate.getDate());
+  var totalWindowDays=daysBetween(windowStart,appDate);
+  var prWS=prDate>windowStart?prDate:windowStart;
+  var prDays=daysBetween(prWS,appDate);
+  var prePrEnd=prDate>windowStart?prDate:windowStart;
+  var prePrCal=daysBetween(windowStart,prePrEnd);
+  var prSTs=prWS.getTime(),prETs=appDate.getTime();
+  var ppSTs=windowStart.getTime(),ppETs=prePrEnd.getTime();
+
+  var prAbs=0,ppAbs=0;
+  absences.forEach(function(a){
+    var dTs=parseDate(a.start).getTime(),rTs=parseDate(a.end).getTime();
+    prAbs+=absentDaysInPeriod(dTs,rTs,prSTs,prETs);
+    if(prePrCal>0)ppAbs+=absentDaysInPeriod(dTs,rTs,ppSTs,ppETs);
+  });
+
+  var prSen=0,ppSen=0;
+  sentences.forEach(function(s){
+    var sS=parseDate(s.start).getTime(),sE=parseDate(s.end).getTime();
+    prSen+=inclusiveOverlap(sS,sE,prSTs,prETs);
+    if(prePrCal>0)ppSen+=inclusiveOverlap(sS,sE,ppSTs,ppETs);
+  });
+
+  var prPresent=Math.max(0,prDays-prAbs-prSen);
+  var hadTemp=document.querySelector('input[name="hadTemp"]:checked').value==='yes';
+  var prePrCredit=0,prePrDays=0,tDaysUsed=0;
+
+  if(prePrCal>0&&hadTemp&&tempPeriods.length>0){
+    tempPeriods.forEach(function(tp){
+      var tS=parseDate(tp.start).getTime(),tE=parseDate(tp.end).getTime();
+      var ov=inclusiveOverlap(tS,tE,ppSTs,ppETs);
+      absences.forEach(function(ab){
+        var dTs=parseDate(ab.start).getTime(),rTs=parseDate(ab.end).getTime();
+        var abS=dTs+864e5,abE=rTs;if(abE<=abS)return;
+        var tEE=tE+864e5;
+        var s3=Math.max(abS,tS,ppSTs),e3=Math.min(abE,tEE,ppETs);
+        if(e3>s3)ov-=Math.round((e3-s3)/864e5);
+      });
+      sentences.forEach(function(se){
+        var seS=parseDate(se.start).getTime(),seE=parseDate(se.end).getTime()+864e5;
+        var tEE=tE+864e5;
+        var s3=Math.max(seS,tS,ppSTs),e3=Math.min(seE,tEE,ppETs);
+        if(e3>s3)ov-=Math.round((e3-s3)/864e5);
+      });
+      tDaysUsed+=Math.max(0,ov);
+    });
+    prePrDays=tDaysUsed;
+    prePrCredit=Math.min(Math.floor(prePrDays/2),365);
+  }
+
+  var totSen=prSen+ppSen;
+  var credited=prPresent+prePrCredit;
+  var req=1095;
+  var eligible=credited>=req;
+  var diff=credited-req;
+  var prTotal=daysBetween(prDate,appDate);
+  var minPr=prTotal>=730;
+  var pass=eligible&&minPr;
+
+  var eligDate='';
+  if(!eligible){
+    var need=req-credited;
+    var est=addDays(appDate,need);
+    var prMin=addDays(prDate,730);
+    if(prMin>est)est=prMin;
+    eligDate=fmtDate(est);
+  }
+
+  var fy=new Date(appDate.getFullYear()-4,appDate.getMonth(),appDate.getDate());
+  var polCert=false;
+  absences.forEach(function(a){
+    var aS2=parseDate(a.start),aE2=parseDate(a.end);
+    var effS=addDays(aS2,1),effE=addDays(aE2,-1);
+    if(effE>=effS){
+      if(effS<fy)effS=fy;
+      if(effE>appDate)effE=appDate;
+      if(effE>=effS&&daysBetween(effS,effE)+1>=183)polCert=true;
     }
-    function absentDaysInPeriod(deptTs, retTs, pStartTs, pEndTs) {
-        var absentStart = deptTs + 864e5, absentEnd = retTs;
-        if (absentEnd <= absentStart) return 0;
-        var s = Math.max(absentStart, pStartTs), e = Math.min(absentEnd, pEndTs);
-        return e > s ? Math.round((e - s) / 864e5) : 0;
+  });
+
+  var barMax=Math.max(credited,req)*1.08||1;
+  var mkPct=clamp((req/barMax)*100,0,100);
+  var fillPct=clamp((credited/barMax)*100,0,100);
+  var cls=pass?'pass':'fail';
+  var diffTxt=diff>=0?fmtN(diff)+' surplus days':fmtN(Math.abs(diff))+' more days needed';
+
+  rc.className='card result-card '+(pass?'pass-border':'fail-border');
+  rli.style.background=pass?'linear-gradient(135deg,#16a34a,#4ade80)':'linear-gradient(135deg,#dc2626,#f87171)';
+
+  var badge=pass
+    ?'<span class="badge-icon">✅</span> You meet the physical presence requirement'
+    :'<span class="badge-icon">❌</span> You do not yet meet the requirement';
+
+  var html='<div class="result-content '+cls+'">';
+  html+='<div class="result-status">';
+  html+='<div class="result-badge">'+badge+'</div>';
+  html+='<div class="result-number">'+fmtN(credited)+'</div>';
+  html+='<div class="result-subtitle">of <strong>'+fmtN(req)+'</strong> days required &nbsp;·&nbsp; '+diffTxt+'</div>';
+  html+='</div>';
+  html+='<div class="progress-wrap"><div class="progress-labels"><span>0</span><span>Target: 1,095 days</span></div>';
+  html+='<div class="progress-track"><div class="progress-fill" style="width:0%"></div>';
+  html+='<div class="progress-marker" style="left:'+mkPct+'%"></div></div></div>';
+  if(!eligible&&eligDate){
+    html+='<div class="eligible-date"><span class="date-icon">📅</span> Estimated eligibility date if you remain in Canada: <strong>'+eligDate+'</strong></div>';
+  }
+  html+='<div class="breakdown"><div class="breakdown-title">Calculation Breakdown</div>';
+  html+=bRow('#6366f1','5-year window',fmtDate(windowStart)+' – '+fmtDate(appDate));
+  html+=bRow('#6366f1','Total days in window',fmtN(totalWindowDays));
+  html+=bRow('#2563eb','Days as PR in window',fmtN(prDays));
+  if(absences.length>0){
+    html+=bRow('#d97706','Absence days (outside Canada)','−'+fmtN(prAbs+ppAbs));
+    html+='<div class="breakdown-sub">✈️ Departure &amp; return days counted as in Canada</div>';
+  }
+  if(totSen>0)html+=bRow('#64748b','Sentence days (excluded)','−'+fmtN(totSen));
+  html+=bRow('#16a34a','Physical presence as PR',fmtN(prPresent)+' days');
+  if(hadTemp&&prePrCal>0&&tempPeriods.length>0){
+    html+=bRow('#7c3aed','Temp resident days present (pre-PR)',fmtN(prePrDays)+' <span class="val-note">× ½</span>');
+    html+=bRow('#7c3aed','Pre-PR half-day credit (max 365)','+'+fmtN(prePrCredit));
+  }
+  html+='<div class="breakdown-row total"><span class="breakdown-label"><span class="dot" style="background:'+(pass?'#16a34a':'#dc2626')+'"></span>Total Credited Days</span><span class="breakdown-value">'+fmtN(credited)+' / '+fmtN(req)+'</span></div>';
+  html+='</div>';
+  if(!minPr){
+    html+='<div class="warning-box amber"><span class="warn-icon">⚠️</span><span>You must be a PR for a <strong>minimum of 2 years (730 days)</strong> before applying. You have <strong>'+fmtN(prTotal)+' days</strong>. Earliest date: <strong>'+fmtDate(addDays(prDate,730))+'</strong>.</span></div>';
+  }
+  if(polCert){
+    html+='<div class="warning-box blue"><span class="warn-icon">📋</span><span>You were outside Canada for <strong>183+ consecutive days</strong> within the 4-year window. You may need a <strong>foreign police certificate</strong>.</span></div>';
+  }
+  if(pass){
+    html+='<div class="info-box green" style="margin-top:1.25rem;"><strong>🍁 Tip:</strong> Apply with more than the minimum 1,095 days to account for any miscalculations. This tool is for estimation only — always verify with official IRCC resources.</div>';
+  }
+  html+='</div>';
+
+  out.innerHTML=html;
+
+  /* Animate bar */
+  requestAnimationFrame(function(){
+    var fill=out.querySelector('.progress-fill');
+    if(fill){
+      requestAnimationFrame(function(){fill.style.width=fillPct+'%';});
     }
-    function inclusiveOverlap(aStartTs, aEndInclTs, pStartTs, pEndTs) {
-        var aE = aEndInclTs + 864e5;
-        var s = Math.max(aStartTs, pStartTs), e = Math.min(aE, pEndTs);
-        return e > s ? Math.round((e - s) / 864e5) : 0;
-    }
+  });
 
-    el('todayBtn').onclick = function() { el('appDate').value = todayStr(); onDatesChange(); };
-    el('appDate').addEventListener('change', onDatesChange);
-    el('prDate').addEventListener('change', onDatesChange);
+  /* Scroll to result on mobile */
+  if(window.innerWidth<600){
+    setTimeout(function(){el('sectionE').scrollIntoView({behavior:'smooth',block:'start'});},250);
+  }
+}
 
-    function onDatesChange() {
-        var appStr = el('appDate').value, prStr = el('prDate').value;
-        if (appStr && prStr) {
-            var app = parseDate(appStr), pr = parseDate(prStr);
-            if (app > pr) {
-                var ws = new Date(app.getFullYear()-5, app.getMonth(), app.getDate());
-                el('windowInfo').style.display = 'block';
-                el('windowText').textContent = fmtDate(ws) + ' to ' + fmtDate(app);
-            } else { el('windowInfo').style.display = 'none'; }
-        } else { el('windowInfo').style.display = 'none'; }
-        updateStepper(); calculate();
-    }
+function bRow(color,label,value){
+  return '<div class="breakdown-row"><span class="breakdown-label"><span class="dot" style="background:'+color+'"></span>'+label+'</span><span class="breakdown-value">'+value+'</span></div>';
+}
 
-    function updateStepper() {
-        var steps = qsa('.step'), connectors = qsa('.step-connector');
-        var appOk = !!el('appDate').value, prOk = !!el('prDate').value, datesOk = appOk && prOk;
-        steps[0].className = 'step ' + (datesOk ? 'completed' : 'active');
-        connectors[0].className = 'step-connector' + (datesOk ? ' done' : '');
-        for (var i = 1; i <= 3; i++) { steps[i].className = 'step ' + (datesOk ? 'completed' : ''); connectors[i].className = 'step-connector' + (datesOk ? ' done' : ''); }
-        var resultReady = datesOk && parseDate(el('appDate').value) > parseDate(el('prDate').value);
-        steps[4].className = 'step ' + (resultReady ? 'active' : '');
-    }
-
-    qsa('input[name="hadTemp"]').forEach(function(r) { r.addEventListener('change', function() { el('tempSection').classList.toggle('visible', this.value === 'yes'); calculate(); }); });
-    qsa('input[name="hadSentence"]').forEach(function(r) { r.addEventListener('change', function() { el('sentenceSection').classList.toggle('visible', this.value === 'yes'); calculate(); }); });
-    qsa('.type-pill').forEach(function(pill) { pill.addEventListener('click', function() { qsa('.type-pill').forEach(function(p){ p.classList.remove('active'); }); pill.classList.add('active'); selectedTempType = pill.getAttribute('data-type'); }); });
-
-    function addTemp() {
-        var s = el('tempStart').value, e = el('tempEnd').value;
-        if (!s || !e) return;
-        if (parseDate(e) < parseDate(s)) { var t=s; s=e; e=t; }
-        tempPeriods.push({ id: nextId++, start: s, end: e, type: selectedTempType, label: el('tempLabel').value.trim() });
-        el('tempStart').value=''; el('tempEnd').value=''; el('tempLabel').value='';
-        renderTemp(); calculate();
-    }
-    el('addTempBtn').onclick = addTemp;
-    ['tempStart','tempEnd','tempLabel'].forEach(function(id){ el(id).addEventListener('keydown',function(ev){ if(ev.key==='Enter'){ev.preventDefault();addTemp();}}); });
-    window._removeTemp = function(id) { tempPeriods = tempPeriods.filter(function(t){return t.id!==id;}); renderTemp(); calculate(); };
-
-    function renderTemp() {
-        var c = el('tempList');
-        if (!tempPeriods.length) { c.innerHTML = '<div class="list-area"><div class="empty-state">No temporary status periods added.</div></div>'; return; }
-        var h = '<div class="list-area">';
-        tempPeriods.forEach(function(t) {
-            var d = daysBetween(parseDate(t.start), parseDate(t.end)) + 1;
-            var lbl = t.label || typeLabels[t.type] + ' period';
-            h += '<div class="list-item"><div class="item-dot temp"></div><div class="item-info"><div class="item-name">' + esc(lbl) + '</div>' +
-                '<div class="item-meta">' + typeEmojis[t.type] + ' ' + typeLabels[t.type] + ' · ' + fmtDate(parseDate(t.start)) + ' – ' + fmtDate(parseDate(t.end)) + '</div></div>' +
-                '<div class="item-badge">' + d + 'd</div>' +
-                '<button class="btn-remove" onclick="_removeTemp('+t.id+')" title="Remove">×</button></div>';
-        });
-        c.innerHTML = h + '</div>';
-    }
-
-    function addSen() {
-        var s = el('senStart').value, e = el('senEnd').value;
-        if (!s || !e) return;
-        if (parseDate(e) < parseDate(s)) { var t=s; s=e; e=t; }
-        sentences.push({ id: nextId++, start: s, end: e, label: el('senLabel').value.trim() });
-        el('senStart').value=''; el('senEnd').value=''; el('senLabel').value='';
-        renderSen(); calculate();
-    }
-    el('addSenBtn').onclick = addSen;
-    ['senStart','senEnd','senLabel'].forEach(function(id){ el(id).addEventListener('keydown',function(ev){ if(ev.key==='Enter'){ev.preventDefault();addSen();}}); });
-    window._removeSen = function(id) { sentences = sentences.filter(function(s){return s.id!==id;}); renderSen(); calculate(); };
-
-    function renderSen() {
-        var c = el('senList');
-        if (!sentences.length) { c.innerHTML = '<div class="list-area"><div class="empty-state">No sentence periods added.</div></div>'; return; }
-        var h = '<div class="list-area">';
-        sentences.forEach(function(s) {
-            var d = daysBetween(parseDate(s.start), parseDate(s.end)) + 1;
-            h += '<div class="list-item"><div class="item-dot sentence"></div><div class="item-info"><div class="item-name">' + esc(s.label || 'Sentence period') + '</div>' +
-                '<div class="item-meta">' + fmtDate(parseDate(s.start)) + ' – ' + fmtDate(parseDate(s.end)) + '</div></div>' +
-                '<div class="item-badge">' + d + 'd</div>' +
-                '<button class="btn-remove" onclick="_removeSen('+s.id+')" title="Remove">×</button></div>';
-        });
-        c.innerHTML = h + '</div>';
-    }
-
-    function addAbs() {
-        var s = el('absStart').value, e = el('absEnd').value;
-        if (!s || !e) return;
-        if (parseDate(e) < parseDate(s)) { var t=s; s=e; e=t; }
-        absences.push({ id: nextId++, start: s, end: e, reason: el('absReason').value.trim() });
-        el('absStart').value=''; el('absEnd').value=''; el('absReason').value='';
-        renderAbs(); calculate();
-    }
-    el('addAbsBtn').onclick = addAbs;
-    ['absStart','absEnd','absReason'].forEach(function(id){ el(id).addEventListener('keydown',function(ev){ if(ev.key==='Enter'){ev.preventDefault();addAbs();}}); });
-    window._removeAbs = function(id) { absences = absences.filter(function(a){return a.id!==id;}); renderAbs(); calculate(); };
-
-    function renderAbs() {
-        var c = el('absList');
-        if (!absences.length) { c.innerHTML = '<div class="list-area"><div class="empty-state">No absences recorded.</div></div>'; return; }
-        var h = '<div class="list-area">';
-        absences.forEach(function(a) {
-            var dept = parseDate(a.start), ret = parseDate(a.end);
-            var totalSpan = daysBetween(dept, ret) + 1;
-            var absent = absentDaysForTrip(dept, ret);
-            var inCanada = totalSpan - absent;
-            h += '<div class="list-item"><div class="item-dot absence"></div><div class="item-info"><div class="item-name">' + esc(a.reason || 'Trip abroad') + '</div>' +
-                '<div class="item-meta">✈️ ' + fmtDate(dept) + ' – ' + fmtDate(ret) + ' (' + totalSpan + '-day trip)</div></div>' +
-                '<div class="item-badges"><div class="item-badge away">' + absent + 'd absent</div><div class="item-badge incan">' + inCanada + 'd in 🇨🇦</div></div>' +
-                '<button class="btn-remove" onclick="_removeAbs('+a.id+')" title="Remove">×</button></div>';
-        });
-        c.innerHTML = h + '</div>';
-    }
-
-    function calculate() {
-        var appStr = el('appDate').value, prStr = el('prDate').value;
-        var out = el('resultArea'), rc = el('sectionE'), rli = el('resultLetterIcon');
-
-        if (!appStr || !prStr) {
-            out.innerHTML = '<div class="placeholder"><span class="placeholder-icon">📊</span><span class="placeholder-text">Enter your PR and application dates to see your result.</span></div>';
-            rc.className = 'card result-card'; rli.style.background = 'linear-gradient(135deg, var(--g400), var(--g300))';
-            return;
-        }
-
-        var appDate = parseDate(appStr), prDate = parseDate(prStr);
-        if (appDate <= prDate) {
-            out.innerHTML = '<div class="placeholder"><span class="placeholder-icon">⚠️</span><span class="placeholder-text">Application date must be after your PR date.</span></div>';
-            rc.className = 'card result-card'; return;
-        }
-
-        var windowStart = new Date(appDate.getFullYear() - 5, appDate.getMonth(), appDate.getDate());
-        var totalWindowDays = daysBetween(windowStart, appDate);
-        var prWindowStart = prDate > windowStart ? prDate : windowStart;
-        var prDaysInWindow = daysBetween(prWindowStart, appDate);
-        var prePrEnd = prDate > windowStart ? prDate : windowStart;
-        var prePrCalDays = daysBetween(windowStart, prePrEnd);
-        var prStartTs = prWindowStart.getTime(), prEndTs = appDate.getTime();
-        var ppStartTs = windowStart.getTime(), ppEndTs = prePrEnd.getTime();
-
-        var prAbsent = 0, ppAbsent = 0;
-        absences.forEach(function(a) {
-            var deptTs = parseDate(a.start).getTime(), retTs = parseDate(a.end).getTime();
-            prAbsent += absentDaysInPeriod(deptTs, retTs, prStartTs, prEndTs);
-            if (prePrCalDays > 0) ppAbsent += absentDaysInPeriod(deptTs, retTs, ppStartTs, ppEndTs);
-        });
-
-        var prSentence = 0, ppSentence = 0;
-        sentences.forEach(function(s) {
-            var sS = parseDate(s.start).getTime(), sE = parseDate(s.end).getTime();
-            prSentence += inclusiveOverlap(sS, sE, prStartTs, prEndTs);
-            if (prePrCalDays > 0) ppSentence += inclusiveOverlap(sS, sE, ppStartTs, ppEndTs);
-        });
-
-        var prPresent = Math.max(0, prDaysInWindow - prAbsent - prSentence);
-        var hadTemp = document.querySelector('input[name="hadTemp"]:checked').value === 'yes';
-        var prePrCredit = 0, prePrPresentDays = 0, tempDaysUsed = 0;
-
-        if (prePrCalDays > 0 && hadTemp && tempPeriods.length > 0) {
-            tempPeriods.forEach(function(tp) {
-                var tS = parseDate(tp.start).getTime(), tE = parseDate(tp.end).getTime();
-                var overlap = inclusiveOverlap(tS, tE, ppStartTs, ppEndTs);
-                absences.forEach(function(ab) {
-                    var deptTs = parseDate(ab.start).getTime(), retTs = parseDate(ab.end).getTime();
-                    var absentStart = deptTs + 864e5, absentEnd = retTs;
-                    if (absentEnd <= absentStart) return;
-                    var tEndExcl = tE + 864e5;
-                    var s3 = Math.max(absentStart, tS, ppStartTs), e3 = Math.min(absentEnd, tEndExcl, ppEndTs);
-                    if (e3 > s3) overlap -= Math.round((e3 - s3) / 864e5);
-                });
-                sentences.forEach(function(se) {
-                    var seS = parseDate(se.start).getTime(), seE = parseDate(se.end).getTime() + 864e5;
-                    var tEndExcl = tE + 864e5;
-                    var s3 = Math.max(seS, tS, ppStartTs), e3 = Math.min(seE, tEndExcl, ppEndTs);
-                    if (e3 > s3) overlap -= Math.round((e3 - s3) / 864e5);
-                });
-                tempDaysUsed += Math.max(0, overlap);
-            });
-            prePrPresentDays = tempDaysUsed;
-            prePrCredit = Math.min(Math.floor(prePrPresentDays / 2), 365);
-        }
-
-        var totalSentence = prSentence + ppSentence;
-        var creditedDays = prPresent + prePrCredit;
-        var required = 1095;
-        var isEligible = creditedDays >= required;
-        var diff = creditedDays - required;
-        var prTotalDays = daysBetween(prDate, appDate);
-        var minPrMet = prTotalDays >= 730;
-
-        var eligibleDateStr = '';
-        if (!isEligible) {
-            var daysNeeded = required - creditedDays;
-            var estDate = addDays(appDate, daysNeeded);
-            var prMinDate = addDays(prDate, 730);
-            if (prMinDate > estDate) estDate = prMinDate;
-            eligibleDateStr = fmtDate(estDate);
-        }
-
-        var fourYearStart = new Date(appDate.getFullYear() - 4, appDate.getMonth(), appDate.getDate());
-        var policeCertNeeded = false;
-        absences.forEach(function(a) {
-            var aS = parseDate(a.start), aE = parseDate(a.end);
-            var effAbsentStart = addDays(aS, 1), effAbsentEnd = addDays(aE, -1);
-            if (effAbsentEnd >= effAbsentStart) {
-                if (effAbsentStart < fourYearStart) effAbsentStart = fourYearStart;
-                if (effAbsentEnd > appDate) effAbsentEnd = appDate;
-                if (effAbsentEnd >= effAbsentStart) {
-                    var consecutive = daysBetween(effAbsentStart, effAbsentEnd) + 1;
-                    if (consecutive >= 183) policeCertNeeded = true;
-                }
-            }
-        });
-
-        var barMax = Math.max(creditedDays, required) * 1.08 || 1;
-        var markerPct = clamp((required / barMax) * 100, 0, 100);
-        var fillPct = clamp((creditedDays / barMax) * 100, 0, 100);
-        var overallPass = isEligible && minPrMet;
-        var cls = overallPass ? 'pass' : 'fail';
-        var badge = overallPass ? '<span class="badge-icon">✅</span> You meet the physical presence requirement' : '<span class="badge-icon">⏳</span> You do not yet meet the requirement';
-
-        rc.className = 'card result-card ' + (cls === 'pass' ? 'pass-border' : 'fail-border');
-        rli.style.background = cls === 'pass' ? 'linear-gradient(135deg, var(--green), #34d399)' : 'linear-gradient(135deg, var(--red), #f87171)';
-
-        var diffText = diff >= 0 ? fmtN(diff) + ' surplus days' : fmtN(Math.abs(diff)) + ' more days needed';
-
-        var html = '<div class="result-content ' + cls + '" style="animation:popIn 0.5s ease-out">';
-        html += '<div class="result-status">';
-        html += '<div class="result-badge">' + badge + '</div>';
-        html += '<div class="result-number">' + fmtN(creditedDays) + '</div>';
-        html += '<div class="result-subtitle">of <strong>' + fmtN(required) + '</strong> days required · ' + diffText + '</div>';
-        html += '</div>';
-
-        html += '<div class="progress-wrap"><div class="progress-labels"><span>0 days</span><span>Target: 1,095 days</span></div>';
-        html += '<div class="progress-track"><div class="progress-fill" style="width:' + fillPct + '%"></div>';
-        html += '<div class="progress-marker" style="left:' + markerPct + '%"></div></div></div>';
-
-        if (!isEligible && eligibleDateStr) {
-            html += '<div class="eligible-date"><span class="date-icon">📅</span> Estimated eligibility date (if you remain in Canada): <strong>' + eligibleDateStr + '</strong></div>';
-        }
-        html += '</div>';
-
-        html += '<div class="breakdown"><div class="breakdown-title">Calculation Breakdown</div>';
-        html += bRow('#6366f1', '5-year window', fmtDate(windowStart) + ' – ' + fmtDate(appDate));
-        html += bRow('#6366f1', 'Total days in window', fmtN(totalWindowDays));
-        html += bRow('#4f46e5', 'Days as PR in window', fmtN(prDaysInWindow));
-
-        if (absences.length > 0) {
-            html += bRow('#d97706', 'Absence days (full days outside Canada)', '−' + fmtN(prAbsent + ppAbsent));
-            html += '<div class="breakdown-sub">✈️ Departure & return days counted as in Canada</div>';
-        }
-        if (totalSentence > 0) {
-            html += bRow('#6b7280', 'Sentence days (excluded)', '−' + fmtN(totalSentence));
-        }
-
-        html += bRow('#10b981', 'Physical presence as PR', fmtN(prPresent) + ' days');
-
-        if (hadTemp && prePrCalDays > 0 && tempPeriods.length > 0) {
-            html += bRow('#8b5cf6', 'Temp resident days present (pre-PR)', fmtN(prePrPresentDays) + ' <span class="val-note">× ½</span>');
-            html += bRow('#8b5cf6', 'Pre-PR half-day credit (max 365)', '+' + fmtN(prePrCredit));
-        }
-
-        html += '<div class="breakdown-row total">';
-        html += '<span class="breakdown-label"><span class="dot" style="background:' + (cls === 'pass' ? 'var(--green)' : 'var(--red)') + '"></span>Total Credited Days</span>';
-        html += '<span class="breakdown-value">' + fmtN(creditedDays) + ' / ' + fmtN(required) + '</span></div>';
-        html += '</div>';
-
-        if (!minPrMet) {
-            html += '<div class="warning-box amber"><span class="warn-icon">⚠️</span><span>You must be a permanent resident for a <strong>minimum of 2 years</strong> (730 days) before applying. You have <strong>' + fmtN(prTotalDays) + ' days</strong> as a PR. Earliest date: <strong>' + fmtDate(addDays(prDate, 730)) + '</strong>.</span></div>';
-        }
-        if (policeCertNeeded) {
-            html += '<div class="warning-box blue"><span class="warn-icon">🔵</span><span>You were outside Canada for <strong>183+ consecutive days</strong> within the 4-year window. You may need to provide a <strong>foreign police certificate</strong>.</span></div>';
-        }
-        if (overallPass) {
-            html += '<div class="info-box green" style="margin-top:1.25rem;"><strong>💡 Recommendation:</strong> Apply with more than the minimum 1,095 days to account for any miscalculations. Attach a copy of this calculation to your Application for Canadian Citizenship (no need to complete form CIT 0407).</div>';
-        }
-
-        out.innerHTML = html;
-    }
-
-    function bRow(color, label, value) {
-        return '<div class="breakdown-row"><span class="breakdown-label"><span class="dot" style="background:'+color+'"></span>'+label+'</span><span class="breakdown-value">'+value+'</span></div>';
-    }
-
-    renderAbs(); renderTemp(); renderSen(); updateStepper();
+renderAbs();renderTemp();renderSen();updateStepper();
 })();
 </script>
 </body>
 </html>
-```
